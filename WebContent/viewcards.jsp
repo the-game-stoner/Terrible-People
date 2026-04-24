@@ -144,7 +144,6 @@ try {
 <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 <link rel="stylesheet" type="text/css" href="cah.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="jquery-ui.min.css" media="screen" />
-<jsp:include page="analytics.jsp" />
 <script type="text/javascript">
 var data = <%= JSONValue.toJSONString(data) %>;
 
