@@ -21,61 +21,50 @@
  * WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* The-Circle Theme */
+:root {
+  --circle-bg: #070a0f;
+  --circle-panel: rgba(255, 255, 255, 0.06);
+  --circle-panel2: rgba(255, 255, 255, 0.04);
+  --circle-border: rgba(255, 255, 255, 0.12);
+  --circle-text: rgba(255, 255, 255, 0.92);
+  --circle-muted: rgba(255, 255, 255, 0.68);
+  --circle-accent: #09ff03;
+  --circle-accent-soft: rgba(9, 255, 3, 0.14);
+  --circle-radius: 18px;
+  --circle-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
 #gamebody {
   overflow: hidden;
 }
 
 body {
   min-height: 640px;
-  background: #eee;
-  color: #000;
+  background: radial-gradient(900px 500px at 15% 10%, rgba(9, 255, 3, 0.16), transparent 62%),
+              linear-gradient(var(--circle-bg), var(--circle-bg));
+  background-attachment: fixed;
+  color: var(--circle-text);
   font-size: 12px;
   margin: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
 }
 
 .card, #game_list {
-  font-family: "helvetica neue", helvetica, Arial, sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
 }
 
-h2,h3,h4 {
+h2, h3, h4 {
   margin: 0 0 .25em;
 }
-/*
-#browser {
-  background: rgba(0, 0, 0, .5);
-}
-
-#browser_inner {
-  border: 10px solid red;
-  padding: 15px;
-  background: white;
-  margin: 150px;
-  min-height: 150px;
-}
-
-#browser, #browser_inner {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  z-index: 9001;
-}
-
-#browser_ok {
-  margin: 15px;
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-}
-*/
 
 #menubar {
-  background:#555;
-  border-bottom:1px solid #333;
-  color:#fff;
+  background: var(--circle-panel2);
+  border-bottom: 1px solid var(--circle-border);
+  backdrop-filter: blur(10px);
+  color: var(--circle-text);
   height: 25px;
-  padding:.5em;
+  padding: .5em;
 }
 
 #menubar_left {
@@ -87,9 +76,10 @@ h2,h3,h4 {
 }
 
 #nickbox {
-  border: 1px solid black;
+  border: 1px solid var(--circle-border);
+  border-radius: 40px;
   display: inline;
-  padding: 5px;
+  padding: 5px 12px;
 }
 
 #canvas {
@@ -108,7 +98,6 @@ h2,h3,h4 {
   padding: 1em;
 }
 
-
 #game_list {
   height: 100%;
   width: 100%;
@@ -116,13 +105,21 @@ h2,h3,h4 {
 }
 
 .gamelist_lobby {
-  background: #fff;
-  border-radius: .25em;
+  background: var(--circle-panel);
+  border-radius: var(--circle-radius);
   width: 575px;
   height: 175px;
   float: left;
-  border: 1px solid #ccc;
+  border: 1px solid var(--circle-border);
   margin: 4px;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.gamelist_lobby:hover {
+  border-color: var(--circle-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--circle-shadow);
 }
 
 .gamelist_lobby_left {
@@ -141,22 +138,40 @@ h2,h3,h4 {
 .gamelist_lobby_join {
   width: 100%;
   height: 75%;
-  border: 1px solid #aaa;
-  background: linear-gradient(#fff, #ddd) #ddd;
-  border-radius: .25em;
+  border: 1px solid var(--circle-border);
+  background: var(--circle-panel);
+  border-radius: var(--circle-radius);
   text-transform: uppercase;
   font-weight: 700;
   white-space: normal;
+  color: var(--circle-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gamelist_lobby_join:hover {
+  background: var(--circle-accent-soft);
+  border-color: var(--circle-accent);
+  color: var(--circle-accent);
 }
 
 .gamelist_lobby_spectate {
   width: 100%;
   height: 25%;
-  border: 1px solid #aaa;
-  background: linear-gradient(#fff, #ddd) #ddd;
-  border-radius: .25em;
+  border: 1px solid var(--circle-border);
+  background: var(--circle-panel2);
+  border-radius: var(--circle-radius);
   text-transform: uppercase;
   font-weight: 700;
+  color: var(--circle-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gamelist_lobby_spectate:hover {
+  background: var(--circle-accent-soft);
+  border-color: var(--circle-accent);
+  color: var(--circle-accent);
 }
 
 .gamelist_lobby_status {
@@ -165,11 +180,11 @@ h2,h3,h4 {
 }
 
 .gamelist_lobby_status_joinable {
-  color: green;
+  color: var(--circle-accent);
 }
 
 .gamelist_lobby_status_unjoinable {
-  color: #c0c0c0;
+  color: var(--circle-muted);
 }
 
 #bottom {
@@ -186,7 +201,9 @@ h2,h3,h4 {
   position: absolute;
   bottom: 0px;
   min-height: 100px;
-  border: 1px solid #999;
+  border: 1px solid var(--circle-border);
+  border-radius: var(--circle-radius);
+  background: var(--circle-panel2);
 }
 
 #tabs {
@@ -215,10 +232,15 @@ h2,h3,h4 {
 .cardset_filter_list select {
   height: 150px;
   width: 100%;
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: 12px;
+  color: var(--circle-text);
 }
 
 .cardset_filter_list span {
   font-weight: bold;
+  color: var(--circle-accent);
 }
 
 .cardset_filter_list .buttons {
@@ -229,15 +251,18 @@ h2,h3,h4 {
   width: 100%;
   height: 198px;
   border-style: none solid solid none;
-  border-color: black;
+  border-color: var(--circle-border);
   border-width: 1px;
   position: absolute;
   bottom: 18px;
   right: 0px;
   overflow-y: scroll;
   min-height: 43px;
-  font-size: 16px;
-  font-family: serif;
+  font-size: 14px;
+  font-family: ui-monospace, monospace;
+  background: var(--circle-panel2);
+  border-radius: 12px;
+  padding: 8px;
 }
 
 #tab-preferences input[type='button'] {
@@ -249,15 +274,19 @@ h2,h3,h4 {
 }
 
 .chat {
-  border: 1px solid black;
+  border: 1px solid var(--circle-border);
   left: -1px;
   bottom: 0px;
   height: 17px;
   position: absolute;
   padding: 0px;
   width: 90%;
-  font-family: serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
   font-size: 12pt;
+  background: var(--circle-panel);
+  color: var(--circle-text);
+  border-radius: 40px;
+  padding-left: 12px;
 }
 
 .chat_submit {
@@ -268,47 +297,66 @@ h2,h3,h4 {
   bottom: -1px;
   margin: 0px;
   padding: 0px;
-  font-size: 14px;
+  font-size: 12px;
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: 40px;
+  color: var(--circle-text);
+  cursor: pointer;
+}
+
+.chat_submit:hover {
+  background: var(--circle-accent-soft);
+  border-color: var(--circle-accent);
+  color: var(--circle-accent);
 }
 
 span.error {
-  color: red;
+  color: #ff4444;
 }
 
 span.debug, span.admin {
-  color: blue;
+  color: #4488ff;
 }
 
 .card {
   position: relative;
   width: 200px;
   height: 200px;
-  border: 1px solid #999;
+  border: 1px solid var(--circle-border);
   padding: 15px;
   font-size: 15pt;
   float: left;
-  border-radius: .25em;
+  border-radius: var(--circle-radius);
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--circle-accent);
+  box-shadow: var(--circle-shadow);
 }
 
 .blackcard {
-  background: #231f20;
-  color: white;
-  background-image:linear-gradient(#231f20,#231f20 75%, #333)
+  background: linear-gradient(135deg, var(--circle-panel2), var(--circle-panel));
+  color: var(--circle-text);
+  border-top: 3px solid var(--circle-accent);
 }
 
 .whitecard {
-  background: white;
-  color: #231f20;
+  background: var(--circle-panel);
+  color: var(--circle-text);
 }
 
-.whitecard, .gamelist_lobby{
-  background-image: linear-gradient(#fff,#fff 75%,#f8f8f8);
+.whitecard:hover, .gamelist_lobby:hover {
+  background: var(--circle-panel);
 }
 
 .cah {
@@ -345,9 +393,10 @@ span.debug, span.admin {
 .game_hand_filter {
   height: 100%;
   position: relative;
-  background: rgba(192, 192, 192, .5);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 100;
   text-align: center;
+  border-radius: var(--circle-radius);
 }
 
 .game_hand_filter_text {
@@ -355,8 +404,10 @@ span.debug, span.admin {
   top: 50%;
   font-size: 300%;
   margin-top: -30px;
-  background:#eee;
-  padding:.25em;
+  background: var(--circle-panel);
+  padding: .25em;
+  border-radius: var(--circle-radius);
+  color: var(--circle-accent);
 }
 
 .game_hand_cards {
@@ -382,7 +433,8 @@ span.debug, span.admin {
 
 .game_message {
   font-size: 150%;
-  font-weight:bold;
+  font-weight: bold;
+  color: var(--circle-accent);
 }
 
 .game_black_card_wrapper {
@@ -417,8 +469,11 @@ span.debug, span.admin {
 }
 
 .game_options {
-  background: #eee;
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: var(--circle-radius);
   z-index: 500;
+  padding: 12px;
 }
 
 .game_right_side_box {
@@ -438,11 +493,12 @@ span.debug, span.admin {
 }
 
 .game_white_cards_binder {
-  border: 3px solid silver;
+  border: 2px solid var(--circle-accent);
   display: inline-block;
   margin-right: 4px;
   margin-bottom: 4px;
-  border-radius: .25em;
+  border-radius: var(--circle-radius);
+  background: var(--circle-panel);
 }
 
 .card_holder {
@@ -466,15 +522,17 @@ span.debug, span.admin {
 }
 
 .scorecard {
-  background:#fff;
-  height: 36px;
-  padding:.25em .5em;
-  border-bottom: 1px solid #bbb;
+  background: var(--circle-panel);
+  height: 42px;
+  padding: .25em .5em;
+  border-bottom: 1px solid var(--circle-border);
   font-size: 11pt;
+  border-radius: 12px;
+  margin-bottom: 4px;
 }
 
 .scorecard:nth-child(even) {
-  background:#f8f8f8;
+  background: var(--circle-panel2);
 }
 
 .scorecard_status {
@@ -487,8 +545,9 @@ span.debug, span.admin {
 }
 
 .selected {
-  color: #fff;
-  background: #3c7fb1 !important;
+  color: #000 !important;
+  background: var(--circle-accent) !important;
+  border-color: var(--circle-accent) !important;
 }
 
 .logo {
@@ -504,11 +563,11 @@ span.debug, span.admin {
   position: absolute;
   width: 22px;
   height: 22px;
+  border-radius: 4px;
 }
 
-
 .blackcard .logo_element {
-  border: 1px solid #231f20;
+  background: var(--circle-panel);
 }
 
 .logo_1 {
@@ -520,7 +579,7 @@ span.debug, span.admin {
 }
 
 .whitecard .logo_1 {
-  background: #231f20;
+  background: var(--circle-accent);
 }
 
 .logo_2 {
@@ -532,7 +591,7 @@ span.debug, span.admin {
 }
 
 .whitecard .logo_2 {
-  background: #636366;
+  background: #09ff03;
 }
 
 .logo_3 {
@@ -546,7 +605,7 @@ span.debug, span.admin {
 }
 
 .whitecard .logo_3 {
-  background: #c7c8ca;
+  background: var(--circle-accent);
   color: black;
 }
 
@@ -561,12 +620,14 @@ span.debug, span.admin {
   font-weight: bold;
   left: 45px;
   bottom: 4px;
+  color: var(--circle-muted);
 }
 
 .card_metadata {
   position: absolute;
   right: 15px;
   bottom: 15px;
+  color: var(--circle-muted);
 }
 
 .draw, .pick {
@@ -574,12 +635,12 @@ span.debug, span.admin {
   clear: both;
   font-weight: bold;
   font-size: 12pt;
+  color: var(--circle-accent);
 }
 
 .card_number {
   width: 20px;
   height: 20px;
-
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -o-border-radius: 10px;
@@ -587,36 +648,39 @@ span.debug, span.admin {
 }
 
 .blackcard .card_number {
-  background: white;
+  background: var(--circle-accent);
   display: inline-block;
-  color: #231f20;
+  color: #000;
   text-align: center;
 }
 
-/* TODO .whitecard .card_number ??? */
-
 .previous_round {
   z-index: 50;
-  border: 3px solid black;
+  border: 2px solid var(--circle-accent);
+  border-radius: var(--circle-radius);
   width: 60%;
   height: 60%;
   position: absolute;
   top: 20%;
   left: 20%;
   padding: 5px;
+  background: var(--circle-panel);
+  backdrop-filter: blur(12px);
 }
 
 .previous_round_close {
   position: absolute;
   right: 0px;
+  top: 0px;
 }
 
 .card_set_label {
   margin-right: 15px;
+  color: var(--circle-accent);
 }
 
 .scorecard_score, .scorecard_player {
-  font-weight:700;
+  font-weight: 700;
 }
 
 .checkbox {
@@ -641,10 +705,11 @@ span.debug, span.admin {
   right: 10px;
   bottom: 19px;
   font-size: 8pt;
+  color: var(--circle-muted);
 }
 
 dfn {
-  border-bottom: 1px dotted black;
+  border-bottom: 1px dotted var(--circle-accent);
 }
 
 #tweetbox {
@@ -654,6 +719,7 @@ dfn {
 .gamelink {
   cursor: pointer;
   text-decoration: underline;
+  color: var(--circle-accent);
 }
 
 .imagecard {
