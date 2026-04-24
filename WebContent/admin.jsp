@@ -61,7 +61,6 @@ if (!admins.contains(wrapper.getRemoteAddr())) {
 ConnectedUsers connectedUsers = injector.getInstance(ConnectedUsers.class);
 Set<String> banList = injector.getInstance(Key.get(new TypeLiteral<Set<String>>(){}, BanList.class));
 
-// process verbose toggle
 String verboseParam = request.getParameter("verbose");
 if (verboseParam != null) {
   if (verboseParam.equals("on")) {
@@ -73,7 +72,6 @@ if (verboseParam != null) {
   return;
 }
 
-// process kick
 String kickParam = request.getParameter("kick");
 if (kickParam != null) {
   User user = connectedUsers.getUser(kickParam);
@@ -89,7 +87,6 @@ if (kickParam != null) {
   return;
 }
 
-// process ban
 String banParam = request.getParameter("ban");
 if (banParam != null) {
   User user = connectedUsers.getUser(banParam);
@@ -106,7 +103,6 @@ if (banParam != null) {
   return;
 }
 
-// process unban
 String unbanParam = request.getParameter("unban");
 if (unbanParam != null) {
   banList.remove(unbanParam);
@@ -130,18 +126,47 @@ if ("true".equals(reloadProps)) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>PYX - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<title>Terrible People - Admin</title>
 <style type="text/css" media="screen">
-table, th, td {
-  border: 1px solid black;
-}
-
-th, td {
-  padding: 5px;
-}
+  body {
+    background: #070a0f;
+    color: rgba(255, 255, 255, 0.92);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    padding: 20px;
+  }
+  table, th, td {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px 12px;
+  }
+  th {
+    background: rgba(255, 255, 255, 0.06);
+  }
+  a {
+    color: #09ff03;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font-size: 1.8rem;
+    letter-spacing: -0.02em;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
 </style>
 </head>
 <body>
+
+<a href="game.jsp" class="back-link">&larr; Back to Game</a>
+
+<h1>Terrible People - Admin Panel</h1>
 
 <p>
   Server up since
@@ -158,31 +183,32 @@ th, td {
   %>
 </p>
 
+<h2>Memory Usage</h2>
 <table>
   <tr>
     <th>Stat</th>
     <th>MiB</th>
   </tr>
-  <tr>  
+  <tr>
     <td>In Use</td>
     <td><%= (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())
         / 1024L / 1024L %></td>
   </tr>
-  <tr>  
+  <tr>
     <td>Free</td>
     <td><% out.print(Runtime.getRuntime().freeMemory() / 1024L / 1024L); %></td>
   </tr>
-  <tr>  
+  <tr>
     <td>JVM Allocated</td>
     <td><% out.print(Runtime.getRuntime().totalMemory() / 1024L / 1024L); %></td>
   </tr>
-  <tr>  
+  <tr>
     <td>JVM Max</td>
     <td><% out.print(Runtime.getRuntime().maxMemory() / 1024L / 1024L); %></td>
   </tr>
 </table>
-<br/>
-Ban list:
+
+<h2>Ban List</h2>
 <table>
   <tr>
     <th>Host</th>
@@ -199,8 +225,8 @@ Ban list:
   }
   %>
 </table>
-<br/>
-User list:
+
+<h2>Connected Users</h2>
 <table>
   <tr>
     <th>Username</th>
@@ -210,35 +236,35 @@ User list:
   <%
   Collection<User> users = connectedUsers.getUsers();
   for (User u : users) {
-    // TODO have a ban system. would need to store them somewhere.
-	  %>
-	  <tr>
-	    <td><%= u.getNickname() %></td>
-	    <td><%= u.getHostname() %></td>
-	    <td>
+    %>
+    <tr>
+      <td><%= u.getNickname() %></td>
+      <td><%= u.getHostname() %></td>
+      <td>
         <a href="?kick=<%= u.getNickname() %>">Kick</a>
         <a href="?ban=<%= u.getNickname() %>">Ban</a>
       </td>
-	  </tr>
-	  <%
+    </tr>
+    <%
   }
   %>
 </table>
 
 <%
-// TODO remove this "verbose logging" crap now that log4j is working.
 Boolean verboseDebugObj = (Boolean) servletContext.getAttribute(StartupUtils.VERBOSE_DEBUG); 
 boolean verboseDebug = verboseDebugObj != null ? verboseDebugObj.booleanValue() : false;
 %>
+
+<h2>Tools</h2>
 <p>
   Verbose logging is currently <strong><%= verboseDebug ? "ON" : "OFF" %></strong>.
-  <a href="?verbose=on">Turn on.</a> <a href="?verbose=off">Turn off.</a>
+  <a href="?verbose=on">Turn on</a> | <a href="?verbose=off">Turn off</a>
 </p>
 <p>
-  <a href="?reloadLog4j=true">Reload log4j.properties.</a>
+  <a href="?reloadLog4j=true">Reload log4j.properties</a>
 </p>
 <p>
-  <a href="?reloadProps=true">Reload pyx.properties.</a>
+  <a href="?reloadProps=true">Reload pyx.properties</a>
 </p>
 
 </body>
