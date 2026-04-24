@@ -1,21 +1,20 @@
-Pretend You're Xyzzy
-===================
+# Terrible People
 
-A Cards Against Humanity clone, server and web client. See WebContent/license.html for full details.
+A modernized, Circle-themed version of Pretend You're Xyzzy (Cards Against Humanity clone).
 
-Note: This project is only known to work with Tomcat 7, all other versions are unsupported. 
-Currently, the only way to build PYX is using Maven via ```mvn clean package war:war``` in the project's directory.
+## Changes from original
 
+- Removed Twitter/X tweetbox
+- Themed to match www.the-circle.xyz
+- Mobile-responsive layout
+- Cleaned up welcome page
 
-If you're doing ```mvn clean package war:exploded jetty:run```, you now need to add ```-Dmaven.buildNumber.doCheck=false -Dmaven.buildNumber.doUpdate=false``` to make the buildnumber plugin allow you to run with uncommited changes.
+## Running locally
 
+\`\`\`
+docker run -d -p 8080:8080 ghcr.io/cyb3r-jak3/dockeryourxyzzy:prebuilt
+\`\`\`
 
-For GeoIP functions to work, download http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz somewhere, gunzip it, and update the geoip.db value in build.properties to point to it.
+## License
 
-## Third-Party Usage
-
-A Docker package for this project exists at [emcniece/DockerYourXyzzy](https://github.com/emcniece/DockerYourXyzzy):
-
-```sh
-docker run -d -p 8080:8080 emcniece/dockeryourxyzzy:dev
-```
+Original code by Andy Janata. See LICENSE file.
