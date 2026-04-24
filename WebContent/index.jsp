@@ -33,7 +33,6 @@ Index page.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Terrible People</title>
-<jsp:include page="analytics.jsp" />
 <link rel="stylesheet" type="text/css" href="cah.css" media="screen" />
 </head>
 <body>
