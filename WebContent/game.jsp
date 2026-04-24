@@ -51,6 +51,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
 <title>Terrible People</title>
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>
@@ -60,9 +61,6 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/cah.js"></script>
 <script type="text/javascript" src="js/cah.config.js"></script>
-<%-- cah must be first, ajax must be before app. app probably has to be last. --%>
-<%-- TODO make this be dynamic with looking at the filesystem and using jquery --%>
-<%-- except that is nontrivial thanks to dependency ordering -_- --%>
 <script type="text/javascript" src="js/cah.constants.js"></script>
 <script type="text/javascript" src="js/cah.log.js"></script>
 <script type="text/javascript" src="js/cah.gamelist.js"></script>
@@ -238,96 +236,84 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
   </div>
 </div>
 
-<!-- Template for game lobbies in the game list. -->
 <div class="hide">
-	<div id="gamelist_lobby_template" class="gamelist_lobby" tabindex="0">
-	<div class="gamelist_lobby_left">
-	    	<h3>
-			<span class="gamelist_lobby_host">host</span>'s Game
-			(<span class="gamelist_lobby_player_count"></span>/<span class="gamelist_lobby_max_players"></span>,
-			<span class="gamelist_lobby_spectator_count"></span>/<span class="gamelist_lobby_max_spectators"></span>)
-			<span class="gamelist_lobby_status">status</span>
-		</h3>
-		<div>
-		<strong>Players:</strong>
-		<span class="gamelist_lobby_players">host, player1, player2</span>
-		</div>
-		<div>
-		<strong>Spectators:</strong>
-		<span class="gamelist_lobby_spectators">spectator1</span>
-		</div>
-		<div><strong>Goal:</strong> <span class="gamelist_lobby_goal"></span></div>
-		<div>
-		<strong>Cards:</strong> <span class="gamelist_lobby_cardset"></span>
-		</div>
-		<div class="hide">Game <span class="gamelist_lobby_id">###</span></div>
-	  </div>
-	  <div class="gamelist_lobby_right">
-	    <input type="button" class="gamelist_lobby_join" value="Join" />
-	    <input type="button" class="gamelist_lobby_spectate" value="Spectate" />
-	  </div>
-	</div>
+  <div id="gamelist_lobby_template" class="gamelist_lobby" tabindex="0">
+    <div class="gamelist_lobby_left">
+      <h3>
+        <span class="gamelist_lobby_host">host</span>'s Game
+        (<span class="gamelist_lobby_player_count"></span>/<span class="gamelist_lobby_max_players"></span>,
+        <span class="gamelist_lobby_spectator_count"></span>/<span class="gamelist_lobby_max_spectators"></span>)
+        <span class="gamelist_lobby_status">status</span>
+      </h3>
+      <div>
+        <strong>Players:</strong>
+        <span class="gamelist_lobby_players">host, player1, player2</span>
+      </div>
+      <div>
+        <strong>Spectators:</strong>
+        <span class="gamelist_lobby_spectators">spectator1</span>
+      </div>
+      <div><strong>Goal:</strong> <span class="gamelist_lobby_goal"></span></div>
+      <div>
+        <strong>Cards:</strong> <span class="gamelist_lobby_cardset"></span>
+      </div>
+      <div class="hide">Game <span class="gamelist_lobby_id">###</span></div>
+    </div>
+    <div class="gamelist_lobby_right">
+      <input type="button" class="gamelist_lobby_join" value="Join" />
+      <input type="button" class="gamelist_lobby_spectate" value="Spectate" />
+    </div>
+  </div>
 </div>
 
-<!-- Template for face-up black cards. -->
 <div class="hide">
-	<div id="black_up_template" class="card blackcard">
-	  <span class="card_text">The quick brown fox jumped over the lazy dog.</span>
-	  <div class="logo">
-	    <div class="logo_1 logo_element">
-	    </div>
-	    <div class="logo_2 logo_element">
-	    </div>
-	    <div class="logo_3 logo_element watermark_container">
+  <div id="black_up_template" class="card blackcard">
+    <span class="card_text">The quick brown fox jumped over the lazy dog.</span>
+    <div class="logo">
+      <div class="logo_1 logo_element"></div>
+      <div class="logo_2 logo_element"></div>
+      <div class="logo_3 logo_element watermark_container">
         <br/>
         <span class="watermark"></span>
-	    </div>
-	    <div class="logo_text">Terrible People</div>
-	  </div>
+      </div>
+      <div class="logo_text">Terrible People</div>
+    </div>
     <div class="card_metadata">
       <div class="draw hide">DRAW <div class="card_number"></div></div>
       <div class="pick hide">PICK <div class="card_number"></div></div>
     </div>
-	</div>
+  </div>
 </div>
 
-<!-- Template for face-down black cards. -->
 <div class="hide">
-	<div id="black_down_template" class="card blackcard">
-	</div>
+  <div id="black_down_template" class="card blackcard">
+  </div>
 </div>
 
-<!-- Template for face-up white cards. -->
 <div class="hide">
-	<div id="white_up_template" class="card whitecard">
-	  <span class="card_text" role="button" tabindex="0">The quick brown fox jumped over the lazy dog.</span>
-	  <div class="logo">
-	    <div class="logo_1 logo_element">
-	    </div>
-	    <div class="logo_2 logo_element">
-	    </div>
-	    <div class="logo_3 logo_element watermark_container">
+  <div id="white_up_template" class="card whitecard">
+    <span class="card_text" role="button" tabindex="0">The quick brown fox jumped over the lazy dog.</span>
+    <div class="logo">
+      <div class="logo_1 logo_element"></div>
+      <div class="logo_2 logo_element"></div>
+      <div class="logo_3 logo_element watermark_container">
         <br/>
         <span class="watermark"></span>
-	    </div>
-	    <div class="logo_text">Terrible People</div>
-	  </div>
-	</div>
+      </div>
+      <div class="logo_text">Terrible People</div>
+    </div>
+  </div>
 </div>
 
-<!-- Template for face-down white cards. -->
 <div class="hide">
-	<div id="white_down_template" class="card whitecard">
-	</div>
+  <div id="white_down_template" class="card whitecard">
+  </div>
 </div>
 
-<!-- Template for game lobbies. We have a holder here for designing only. -->
-<div style="width: 1000px; height: 506px; border: 1px solid black; position: relative;"
-    class="hide">
+<div style="width: 1000px; height: 506px; border: 1px solid black; position: relative;" class="hide">
   <div id="game_template" class="game">
     <div class="game_top">
-      <input type="button" class="game_show_last_round game_menu_bar" value="Show Last Round"
-          disabled="disabled" />
+      <input type="button" class="game_show_last_round game_menu_bar" value="Show Last Round" disabled="disabled" />
       <input type="button" class="game_show_options game_menu_bar" value="Hide Game Options" />
       <label class="game_menu_bar checkbox"><input type="checkbox" class="game_animate_cards" checked="checked" /><span> Animate Cards</span></label>
       <div class="game_message" role="status">
@@ -338,26 +324,20 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
       <div style="width:100%; height:100%;">
         <div class="game_left_side">
           <div class="game_black_card_wrapper">
-            <span tabindex="0">The black card for
-                <span class="game_black_card_round_indicator">this round is</span>:
-            </span>
-            <div class="game_black_card" tabindex="0">
-            </div>
+            <span tabindex="0">The black card for <span class="game_black_card_round_indicator">this round is</span>:</span>
+            <div class="game_black_card" tabindex="0"></div>
           </div>
           <input type="button" class="confirm_card" value="Confirm Selection" />
         </div>
-        <div class="game_options">
-        </div>
+        <div class="game_options"></div>
         <div class="game_right_side hide">
           <div class="game_right_side_box game_white_card_wrapper">
             <span tabindex="0">The white cards played this round are:</span>
-            <div class="game_white_cards game_right_side_cards">
-            </div>
+            <div class="game_white_cards game_right_side_cards"></div>
           </div>
           <div class="game_right_side_box game_last_round hide">
             The previous round was won by <span class="game_last_round_winner"></span>.
-            <div class="game_last_round_cards game_right_side_cards">
-            </div>
+            <div class="game_last_round_cards game_right_side_cards"></div>
           </div>
         </div>
       </div>
@@ -366,37 +346,31 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
           <span class="game_hand_filter_text"></span>
         </div>
         <span class="your_hand" tabindex="0">Your Hand</span>
-        <div class="game_hand_cards">
-        </div>
+        <div class="game_hand_cards"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Template for scoreboard container. Holder for design. -->
 <div style="height: 215px; border: 1px solid black;" class="hide">
-	<div id="scoreboard_template" class="scoreboard">
+  <div id="scoreboard_template" class="scoreboard">
     <div class="game_message" tabindex="0">Scoreboard</div>
-	</div>
+  </div>
 </div>
 
-<!-- Template for scoreboard score card. Holder for design. -->
 <div class="scoreboard hide" style="height: 215px;">
-	<div id="scorecard_template" class="scorecard" tabindex="0">
-	  <span class="scorecard_player">PlayerName</span>
-	  <div class="clear"></div>
-	  <span class="scorecard_points"><span class="scorecard_score">0</span> <span class="scorecard_point_title">Awesome Point<span class="scorecard_s">s</span></span></span>
-	  <span class="scorecard_status">Status</span>
-	</div>
+  <div id="scorecard_template" class="scorecard" tabindex="0">
+    <span class="scorecard_player">PlayerName</span>
+    <div class="clear"></div>
+    <span class="scorecard_points"><span class="scorecard_score">0</span> <span class="scorecard_point_title">Awesome Point<span class="scorecard_s">s</span></span></span>
+    <span class="scorecard_status">Status</span>
+  </div>
 </div>
 
-<!-- Template for round card set binder. -->
 <div class="hide">
-	<div id="game_white_cards_binder_template" class="game_white_cards_binder hide">
-	</div>
+  <div id="game_white_cards_binder_template" class="game_white_cards_binder hide"></div>
 </div>
 
-<!-- Previous round display. -->
 <div class="hide">
   <div id="previous_round_template" class="previous_round">
     <input type="button" class="previous_round_close" value="Close" />
@@ -405,7 +379,6 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
   </div>
 </div>
 
-<!-- Template for game options. -->
 <div class="hide">
   <div class="game_options" id="game_options_template">
     <span class="options_host_only">Only the game host can change options.</span>
@@ -450,20 +423,20 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
       <select id="timer_multiplier_template" class="timer_multiplier"
           title="Players will be skipped if they have not played within a reasonable amount of time. This is the multiplier to apply to the default timeouts, or Unlimited to disable timeouts."
           aria-label="Players will be skipped if they have not played within a reasonable amount of time. This is the multiplier to apply to the default timeouts, or Unlimited to disable timeouts.">
-      	<option value="0.25x">0.25x</option>
-      	<option value="0.5x">0.5x</option>
-      	<option value="0.75x">0.75x</option>
-      	<option selected="selected" value="1x">1x</option>
-      	<option value="1.25x">1.25x</option>
-      	<option value="1.5x">1.5x</option>
-      	<option value="1.75x">1.75x</option>
-      	<option value="2x">2x</option>
-      	<option value="2.5x">2.5x</option>
-      	<option value="3x">3x</option>
-      	<option value="4x">4x</option>
-      	<option value="5x">5x</option>
-      	<option value="10x">10x</option>
-      	<option value="Unlimited">Unlimited</option>
+        <option value="0.25x">0.25x</option>
+        <option value="0.5x">0.5x</option>
+        <option value="0.75x">0.75x</option>
+        <option selected="selected" value="1x">1x</option>
+        <option value="1.25x">1.25x</option>
+        <option value="1.5x">1.5x</option>
+        <option value="1.75x">1.75x</option>
+        <option value="2x">2x</option>
+        <option value="2.5x">2.5x</option>
+        <option value="3x">3x</option>
+        <option value="4x">4x</option>
+        <option value="5x">5x</option>
+        <option value="10x">10x</option>
+        <option value="Unlimited">Unlimited</option>
       </select>
       <br/>
       <fieldset class="card_sets">
