@@ -22,8 +22,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --%>
 <%--
-Index page. This is currently entirely static HTML, but may eventually require some server-side code
-to, for instance, display the number of connected players.
+Index page.
 
 @author Andy Janata (ajanata@socialgamer.net)
 --%>
@@ -33,23 +32,22 @@ to, for instance, display the number of connected players.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Pretend You're Xyzzy</title>
+<title>Terrible People</title>
 <jsp:include page="analytics.jsp" />
 <link rel="stylesheet" type="text/css" href="cah.css" media="screen" />
 </head>
 <body>
 <div id="tweetbox">
   <h3>Recent tweets (mainly server status updates)</h3>
-  <a class="twitter-timeline" data-height="500" data-dnt="true" data-theme="light"
+  <a class="twitter-timeline" data-height="500" data-dnt="true" data-theme="dark"
   href="https://twitter.com/_PYX_?ref_src=twsrc%5Etfw">Tweets by _PYX_</a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <h1>
-  Pretend You're <dfn style="border-bottom: 1px dotted black"
-  title="Xyzzy is an Artificial Unintelligence bot. You'll be making more sense than him in this game.">
-  Xyzzy</dfn>
+  Terrible <dfn style="border-bottom: 1px dotted var(--circle-accent)"
+  title="Party game for The-Circle community">People</dfn>
 </h1>
-<h3>A Cards Against Humanity clone.</h3>
+<h3>A party game for The-Circle community.</h3>
 <p>
   Your computer's IP address will <strong>always</strong> be logged when you load the game client.
   It is not tied in any way to your username, except possibly if a server error occurs. Gameplay
@@ -67,21 +65,19 @@ to, for instance, display the number of connected players.
 <p>Known issues:</p>
 <ul>
   <li><strong>Do not open the game more than once in the same browser.</strong> Neither instance
-  will receive all data from the server, and you will not be able to play. I have an idea on how to
-  fix this, but I haven't had time to do so.</li>
+  will receive all data from the server, and you will not be able to play.</li>
   <li>This game was extensively tested in <a href="http://google.com/chrome">Google Chrome</a>.
   It should work in all recent versions of major browsers, but it may not look 100% as intended. If
   you find a major issue, please
   <a href="https://github.com/ajanata/PretendYoureXyzzy/issues/new">open a bug on GitHub</a> with a
-  screenshot and the name and version of the browser you are using, and I'll try to fix it.
+  screenshot and the name and version of the browser you are using.
   </li>
   <li>You may not always see your card in the top area after you play it, but it has been played.
-  Also, sometimes the card will display in the top area but be small. I have no idea why either of
-  these happen.</li>
+  Also, sometimes the card will display in the top area but be small.</li>
   <li>If you refresh in the game, an error will pop up in the log briefly before the refresh
   happens. It is safe to ignore.</li>
   <li>You may see an error after joining a game. As the error message states, this is safe to
-  ignore. I will figure out a way to make this not show up.</li>
+  ignore.</li>
   <li>Interface elements may not be perfectly sized and positioned immediately after loading the
   page if your window is sufficiently small. Resize the window to fix.</li>
   <li>A player joining the game in progress may have a slightly incorrect representation of the
@@ -96,18 +92,17 @@ to, for instance, display the number of connected players.
   <li>Support for Black Cards with "pick" and/or "draw" annotations is rudimentary. When you play
   your cards, it does not group them until the judging starts. Also, when other players play cards,
   you do not see any progress from them until they have played all 2 or 3 cards, and it only shows
-  a single face-down card for them. I will try to make this look nicer, but it works.
-	  <ul>
-	    <li>Also, you cannot un-do your first (or second) card: Once it's played, it's played.</li>
-	    <li>While judging, only one card will be highlighted. It does not matter which card in a group
-	    you click, the game will figure it out.</li>
-	    <li>I know that when you have a lot of players, especially with Pick 2 or Pick 3, it gets very
-      hard to read, and cards overlap (and underlap) your hand, and are hard to click sometimes.
-      I'll work on this soon. You can resize the window to try to help if you're having problems
+  a single face-down card for them.
+    <ul>
+      <li>Also, you cannot un-do your first (or second) card: Once it's played, it's played.</li>
+      <li>While judging, only one card will be highlighted. It does not matter which card in a group
+      you click, the game will figure it out.</li>
+      <li>I know that when you have a lot of players, especially with Pick 2 or Pick 3, it gets very
+      hard to read, and cards overlap your hand. Resize the window to help if you're having problems
       for now.</li>
-	  </ul>
+    </ul>
   </li>
-  <li>You can't bet Awesome Points to play another card, and I am unsure if I will add this.</li>
+  <li>You can't bet Awesome Points to play another card.</li>
 </ul>
 <p>Future enhancements:</p>
 <ul>
@@ -125,12 +120,10 @@ to, for instance, display the number of connected players.
     onclick="window.location='game.jsp';" />
 </p>
 <p>
-  Pretend You're Xyzzy is a Cards Against Humanity clone, which is available at
-  <a href="http://www.cardsagainsthumanity.com/">cardsagainsthumanity.com</a>, where you can buy it
-  or download and print it out yourself. It is distributed under a
-  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons - Attribution -
-  Noncommercial - Share Alike license</a>. This web version is in no way endorsed or sponsored by
-  cardsagainsthumanity.com. You may download the source code to this version from
+  Terrible People is a party game for The-Circle community, inspired by Cards Against Humanity,
+  which is available at <a href="http://www.cardsagainsthumanity.com/">cardsagainsthumanity.com</a>.
+  This web version is in no way endorsed or sponsored by cardsagainsthumanity.com.
+  You may download the source code from
   <a href="https://github.com/ajanata/PretendYoureXyzzy">GitHub</a>. For full license
   information, including information about included libraries, see the
   <a href="license.html">full license information</a>.
