@@ -126,7 +126,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
   }
   
   .log {
-    height: 185px !important;
+    height: 200px !important;
     padding: 4px 5px !important;
     font-size: 14px !important;
     line-height: 1.3 !important;
