@@ -128,19 +128,18 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
         aria-label="Optionally enter an identification code." placeholder="For returning players (optional)" />
     <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes">ℹ️ What's this?</a>
     
-    <input type="button" id="nicknameconfirm" value="Set Nickname" />
     <span id="nickbox_error" class="error"></span>
+    
+    <!-- Single combined button -->
+    <div style="text-align: center; margin-top: 1.5rem;">
+      <input type="button" class="btn-primary" id="nicknameconfirm" value="🎮 Set Nickname & Enter Game →" />
+    </div>
   </div>
 
   <!-- Privacy reminder - subtle -->
   <p style="text-align: center; font-size: 0.85rem; color: var(--circle-muted);">
     <a href="privacy.html" style="color: var(--circle-accent);">📋 Privacy info</a> — We log IPs for security only, never tied to your username.
   </p>
-
-  <!-- ENTER GAME BUTTON -->
-  <div class="button-container">
-    <input type="button" class="btn-primary" value="🎮 Enter Game →" onclick="document.getElementById('nicknameconfirm').click();" />
-  </div>
 
   <!-- Footer -->
   <p class="footer-text">
