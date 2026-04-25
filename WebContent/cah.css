@@ -369,7 +369,7 @@ h2, h3, h4 {
 
 #bottom {
   width: 100%;
-  height: 215px;
+  height: 160px;  /* Changed from 215px to 160px */
   position: absolute;
   top: 543px;
   min-height: 100px;
