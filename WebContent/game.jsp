@@ -22,10 +22,10 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --%>
 <%--
-The main game page. This is almost entirely static HTML, other than ensuring that a session is
-created for the user now.
+The main game page - cleaned and modernized for The-Circle theme.
 
 @author Andy Janata (ajanata@socialgamer.net)
+@modified for The-Circle community
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.google.inject.Injector" %>
@@ -52,7 +52,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-<title>Terrible People</title>
+<title>Terrible People — Join a Game</title>
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -76,58 +76,81 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <script type="text/javascript" src="js/cah.app.js"></script>
 <link rel="stylesheet" type="text/css" href="cah.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="jquery-ui.min.css" media="screen" />
+<style>
+  /* Welcome section fade-in */
+  #welcome {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Smooth transitions for game interface */
+  #canvas, #bottom {
+    transition: opacity 0.3s ease;
+  }
+</style>
 </head>
 <body id="gamebody">
 
+<!-- WELCOME / LOGIN SECTION - Clean and modern -->
 <div id="welcome" class="welcome-container">
   <h1 tabindex="0">
     Terrible <dfn title="Party game for The-Circle community">People</dfn>
   </h1>
   <h3>A party game for The-Circle community.</h3>
 
+  <!-- Quick info - streamlined -->
   <div class="info-box">
-    <p>If this is your first time playing, you may wish to read <a href="index.jsp">the changelog and list of known issues</a>.</p>
-    <p>Your computer's IP address will <strong>always</strong> be logged when you load the game client. Gameplay results are logged permanently, but without information identifying you.</p>
+    <p>✨ Choose a nickname and join the fun. No registration required — just jump in!</p>
   </div>
 
-  <div class="info-box">
-    <p><strong>Most recent update: 3 September 2018</strong></p>
-    <ul>
-      <li>All chat and fill-in-the-blank cards have been disabled. <a href="https://gist.githubusercontent.com/ajanata/07ededdb584f7bb77a8c7191d3a4bbcc/raw/e76faacc19c2bb598a1a8fd94b9ebcb29c5502e0">Learn why.</a></li>
-    </ul>
-  </div>
-
+  <!-- NICKNAME FORM - Clean, centered, modern -->
   <div id="nickbox" class="nickbox">
-    <label for="nickname">Nickname:</label>
+    <label for="nickname">🎭 Your Nickname</label>
     <input type="text" id="nickname" value="" maxlength="30" role="textbox"
-        aria-label="Enter your nickname." data-lpignore="true" />
+        aria-label="Enter your nickname." data-lpignore="true" placeholder="e.g., FunnyGuy, QueenOfCards" />
+    
     <label for="idcode">
-      <dfn title="Only available via HTTPS. Provide a secret identification code to positively identify yourself in the chat.">
-        Optional identification code:
+      <dfn title="Only available via HTTPS. Provide a secret identification code to positively identify yourself.">
+        🔐 Optional Identification Code
       </dfn>
     </label>
     <input type="password" id="idcode" value="" maxlength="100" disabled="disabled"
-        aria-label="Optionally enter an identification code." />
-    <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes">(Help)</a>
-    <input type="button" id="nicknameconfirm" value="Set" />
+        aria-label="Optionally enter an identification code." placeholder="For returning players (optional)" />
+    <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes">ℹ️ What's this?</a>
+    
+    <input type="button" id="nicknameconfirm" value="Set Nickname" />
     <span id="nickbox_error" class="error"></span>
   </div>
 
-  <p><a href="privacy.html"><strong>Hey, this is important:</strong> Read the privacy page for details about what gameplay information is collected and how it's shared.</a></p>
+  <!-- Privacy reminder - subtle -->
+  <p style="text-align: center; font-size: 0.85rem; color: var(--circle-muted);">
+    <a href="privacy.html" style="color: var(--circle-accent);">📋 Privacy info</a> — We log IPs for security only, never tied to your username.
+  </p>
 
+  <!-- ENTER GAME BUTTON -->
   <div class="button-container">
-    <input type="button" class="btn-primary" value="Enter Game" onclick="document.getElementById('nicknameconfirm').click();" />
+    <input type="button" class="btn-primary" value="🎮 Enter Game →" onclick="document.getElementById('nicknameconfirm').click();" />
   </div>
 
+  <!-- Footer -->
   <p class="footer-text">
-    Terrible People is a party game for The-Circle community, inspired by Cards Against Humanity,
-    available at <a href="http://www.cardsagainsthumanity.com/">cardsagainsthumanity.com</a>.
-    This web version is in no way endorsed or sponsored by cardsagainsthumanity.com.
-    Source code available on <a href="https://github.com/ajanata/PretendYoureXyzzy">GitHub</a>.
-    See <a href="license.html">full license information</a>.
+    Terrible People is a party game for The-Circle community, inspired by Cards Against Humanity.<br />
+    <a href="https://github.com/the-game-stoner/Terrible-People">Source code</a> • 
+    <a href="license.html">License</a>
   </p>
 </div>
 
+<!-- GAME INTERFACE (hidden until nickname is set) -->
 <div id="canvas" class="hide">
   <div id="menubar">
     <div id="menubar_left">
