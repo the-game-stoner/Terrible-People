@@ -127,13 +127,13 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
   
   .log {
     height: 200px !important;
-    padding: 4px 5px !important;
+    padding: 4px 6px !important;
     font-size: 14px !important;
     line-height: 1.3 !important;
   }
   
   .chat {
-    padding: 5px 10px !important;
+    padding: 5px 6px !important;
     font-size: 14px !important;
     margin: 4px 0 4px 6px !important;
     width: calc(100% - 58px) !important;
