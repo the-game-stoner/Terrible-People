@@ -474,7 +474,7 @@ h2, h3, h4 {
   font-size: 11px;
   line-height: 1.3;
   color: var(--circle-text);
-  height: 85px;
+  height: 30px;
   overflow-y: auto;
   width: auto;
   position: relative;
