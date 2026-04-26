@@ -2,24 +2,6 @@
 <%--
 Copyright (c) 2012-2020, Andy Janata
 All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted
-provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this list of conditions
-  and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of
-  conditions and the following disclaimer in the documentation and/or other materials provided
-  with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
-WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.google.inject.Injector" %>
@@ -106,7 +88,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
   </p>
 </div>
 
-<div class="hide">
+<div id="main_container" class="hide">
 
   <div id="canvas">
     <div id="menubar">
@@ -162,45 +144,60 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
     </div>
   </div>
 
-  <div id="gamelist_lobby_template" class="gamelist_lobby">
-    <div class="gamelist_lobby_left">
-      <h3><span class="gamelist_lobby_host"></span>'s Game</h3>
-      <div><strong>Players:</strong> <span class="gamelist_lobby_players"></span></div>
-    </div>
-    <div class="gamelist_lobby_right">
-      <input type="button" class="gamelist_lobby_join" value="Join" />
+  <div id="gamelist_lobby_template" class="hide">
+    <div class="gamelist_lobby">
+      <div class="gamelist_lobby_left">
+        <h3><span class="gamelist_lobby_host"></span>'s Game</h3>
+        <div><strong>Players:</strong> <span class="gamelist_lobby_players"></span></div>
+      </div>
+      <div class="gamelist_lobby_right">
+        <input type="button" class="gamelist_lobby_join" value="Join" />
+      </div>
     </div>
   </div>
 
-  <div id="black_up_template" class="card blackcard">
-    <span class="card_text"></span>
-    <div class="logo"><div class="logo_text">Terrible People</div></div>
-  </div>
-
-  <div id="white_up_template" class="card whitecard">
-    <span class="card_text"></span>
-    <div class="logo"><div class="logo_text">Terrible People</div></div>
-  </div>
-
-  <div id="game_template" class="game">
-    <div class="game_top">
-      <input type="button" class="game_show_options game_menu_bar" value="Options" />
-      <div class="game_message"></div>
+  <div id="black_up_template" class="hide">
+    <div class="card blackcard">
+      <span class="card_text"></span>
+      <div class="logo"><div class="logo_text">Terrible People</div></div>
     </div>
-    <div class="game_left_side">
-      <div class="game_black_card"></div>
-      <input type="button" class="confirm_card" value="Confirm" />
-    </div>
-    <div class="game_hand"><div class="game_hand_cards"></div></div>
   </div>
 
-  <div id="white_down_template" class="card whitecard"></div>
-  <div id="black_down_template" class="card blackcard"></div>
-  <div id="scoreboard_template" class="scoreboard"><div class="game_message">Scoreboard</div></div>
-  <div id="scorecard_template" class="scorecard">
-    <span class="scorecard_player"></span>
-    <span class="scorecard_points"><span class="scorecard_score">0</span> Awesome Points</span>
-    <span class="scorecard_status"></span>
+  <div id="white_up_template" class="hide">
+    <div class="card whitecard">
+      <span class="card_text"></span>
+      <div class="logo"><div class="logo_text">Terrible People</div></div>
+    </div>
+  </div>
+
+  <div id="game_template" class="hide">
+    <div class="game">
+      <div class="game_top">
+        <input type="button" class="game_show_options game_menu_bar" value="Options" />
+        <div class="game_message"></div>
+      </div>
+      <div class="game_left_side">
+        <div class="game_black_card"></div>
+        <input type="button" class="confirm_card" value="Confirm" />
+      </div>
+      <div class="game_right_side">
+          <div class="game_right_side_box">
+              <div class="game_right_side_cards"></div>
+          </div>
+      </div>
+      <div class="game_hand"><div class="game_hand_cards"></div></div>
+    </div>
+  </div>
+
+  <div id="white_down_template" class="hide"><div class="card whitecard"></div></div>
+  <div id="black_down_template" class="hide"><div class="card blackcard"></div></div>
+  <div id="scoreboard_template" class="hide"><div class="scoreboard"><div class="game_message">Scoreboard</div></div></div>
+  <div id="scorecard_template" class="hide">
+    <div class="scorecard">
+      <span class="scorecard_player"></span>
+      <span class="scorecard_points"><span class="scorecard_score">0</span> Awesome Points</span>
+      <span class="scorecard_status"></span>
+    </div>
   </div>
 </div>
 
