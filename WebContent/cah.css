@@ -34,7 +34,7 @@
   --circle-shadow-sm: 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
-/* CRITICAL FIX: Ensure hidden elements STAY hidden until the script triggers */
+/* CRITICAL FIX: The master hidden state */
 .hide {
   display: none !important;
 }
@@ -263,6 +263,11 @@ h2, h3, h4 {
   float: right;
 }
 
+/* Ensure canvas shows up correctly when not hidden */
+#canvas:not(.hide) {
+  display: block;
+}
+
 #canvas {
   height: 533px;
   position: relative;
@@ -369,6 +374,11 @@ h2, h3, h4 {
 
 /* ========== CHAT SECTION ========== */
 
+/* Only apply flex layout when NOT hidden */
+#bottom:not(.hide) {
+  display: flex;
+}
+
 #bottom {
   width: 100%;
   height: 160px;
@@ -378,14 +388,8 @@ h2, h3, h4 {
   right: 0;
   background: transparent;
   z-index: 100;
-  display: flex;
   padding: 0 10px 10px 10px;
   box-sizing: border-box;
-}
-
-/* Only apply flex when visible (not hidden) */
-#bottom:not(.hide) {
-  display: flex !important;
 }
 
 #info_area {
@@ -1080,9 +1084,9 @@ span.debug, span.admin {
     flex-direction: column;
   }
 
-  /* Again, only apply block/flex when visible */
+  /* Again, only apply display layout when visible */
   #bottom:not(.hide) {
-    display: block !important;
+    display: block;
   }
 
   #canvas {
