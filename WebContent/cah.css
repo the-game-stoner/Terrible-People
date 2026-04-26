@@ -367,14 +367,15 @@ h2, h3, h4 {
   color: var(--circle-muted);
 }
 
+/* ========== CHAT SECTION FIXED ========== */
+
 #bottom {
   width: 100%;
-  height: 120px;
+  height: 110px;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  min-height: 100px;
   background: transparent;
   z-index: 100;
 }
@@ -385,30 +386,21 @@ h2, h3, h4 {
   position: absolute;
   bottom: 0;
   left: 0;
-  min-height: 100px;
   border: 1px solid var(--circle-border);
   border-radius: var(--circle-radius);
   background: var(--circle-panel2);
 }
 
 #tabs {
-  min-height: 100px;
-  width: auto !important;
-  height: 100%;
-  border: 0px;
   position: absolute;
   bottom: 0;
   right: 14px;
   left: 260px;
+  height: 100%;
   background: var(--circle-panel2);
   border-radius: var(--circle-radius);
   border: 1px solid var(--circle-border);
   overflow: hidden;
-  backdrop-filter: blur(8px);
-}
-
-#tabs .ui-widget {
-  font-height: 16px !important;
 }
 
 #tabs .ui-tabs-nav {
@@ -430,7 +422,6 @@ h2, h3, h4 {
   font-size: 0.8rem;
   padding: 6px 10px;
   display: inline-block;
-  transition: all 0.2s ease;
 }
 
 #tabs .ui-tabs-tab.ui-tabs-active a {
@@ -438,62 +429,35 @@ h2, h3, h4 {
   border-bottom: 2px solid var(--circle-accent);
 }
 
-#tabs .ui-tabs-tab a:hover {
-  color: var(--circle-accent);
-  background: var(--circle-accent-soft);
-}
-
 .tab-button {
-  font-size: 12px !important;
+  font-size: 12px;
 }
 
-.cardset_filter_list {
-  display: inline-block;
-  width: 33%;
-}
-
-.cardset_filter_list select {
-  height: 150px;
+#tab-global {
   width: 100%;
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 12px;
-  color: var(--circle-text);
-}
-
-.cardset_filter_list span {
-  font-weight: bold;
-  color: var(--circle-accent);
-}
-
-.cardset_filter_list .buttons {
-  text-align: center;
+  padding: 6px;
+  box-sizing: border-box;
 }
 
 .log {
   background: var(--circle-panel);
   border: 1px solid var(--circle-border);
   border-radius: 12px;
-  padding: 4px 6px;
+  padding: 6px 8px;
   font-family: ui-sans-serif, system-ui, sans-serif;
-  font-size: 13px;
-  line-height: 1.3;
+  font-size: 12px;
+  line-height: 1.4;
   color: var(--circle-text);
-  height: 35px;
+  height: 60px;
   overflow-y: auto;
-  width: 100% !important;
-  position: relative;
-  bottom: auto;
-  right: auto;
+  width: 100%;
   box-sizing: border-box;
 }
 
 .log div {
-  margin-bottom: 3px;
-  padding: 2px 5px;
+  margin-bottom: 2px;
+  padding: 2px 4px;
   border-radius: 4px;
-  transition: background 0.1s ease;
-  word-wrap: break-word;
 }
 
 .log div:hover {
@@ -514,87 +478,21 @@ h2, h3, h4 {
 
 .log .chat_notice {
   color: #ffaa44;
-  font-weight: 500;
 }
 
 .log .chat_error {
   color: #ff5555;
 }
 
-#tab-preferences input[type='button'] {
-  float: right;
-}
-
-#tab-preferences, #tab-gamelist-filters {
-  overflow-y: auto;
-  background: var(--circle-panel2);
-  padding: 12px;
-  border-radius: 12px;
-  color: var(--circle-text);
-}
-
-#tab-preferences label,
-#tab-gamelist-filters label {
-  color: var(--circle-text);
-}
-
-#tab-preferences input[type="text"],
-#tab-preferences textarea,
-#tab-gamelist-filters select {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 8px;
-  color: var(--circle-text);
-  padding: 6px 10px;
-}
-
-#tab-preferences input[type="button"] {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 40px;
-  color: var(--circle-text);
-  padding: 6px 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-#tab-preferences input[type="button"]:hover {
-  background: var(--circle-accent-soft);
-  border-color: var(--circle-accent);
-  color: var(--circle-accent);
-}
-
-.cardset_filter_list select {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 8px;
-  color: var(--circle-text);
-}
-
-.cardset_filter_list select option {
-  background: var(--circle-bg);
-}
-
-fieldset legend {
-  color: var(--circle-accent);
-  font-weight: 500;
-}
-
 .chat {
   background: var(--circle-panel);
   border: 1px solid var(--circle-border);
-  border-radius: 40px;
+  border-radius: 30px;
   padding: 6px 12px;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--circle-text);
-  width: calc(100% - 65px) !important;
+  width: calc(100% - 65px);
   margin: 4px 0 4px 6px;
-  transition: all 0.2s ease;
-  position: relative;
-  left: auto;
-  bottom: auto;
-  height: auto;
-  font-family: ui-sans-serif, system-ui, sans-serif;
   box-sizing: border-box;
 }
 
@@ -607,7 +505,7 @@ fieldset legend {
 .chat_submit {
   background: var(--circle-accent);
   border: none;
-  border-radius: 40px;
+  border-radius: 30px;
   padding: 6px 12px;
   font-size: 12px;
   font-weight: bold;
@@ -615,14 +513,8 @@ fieldset legend {
   cursor: pointer;
   margin: 4px 6px 4px 0;
   width: 50px;
-  transition: all 0.2s ease;
-  position: relative;
-  right: auto;
-  bottom: auto;
-  height: auto;
-  box-sizing: border-box;
   text-align: center;
-  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .chat_submit:hover {
@@ -630,21 +522,7 @@ fieldset legend {
   transform: scale(1.02);
 }
 
-/* Force inner chat elements to respect parent width */
-#tab-global {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-}
-
-span.error {
-  color: #ff4444;
-}
-
-span.debug, span.admin {
-  color: #4488ff;
-}
+/* ========== CARD STYLES ========== */
 
 .card {
   position: relative;
@@ -655,11 +533,6 @@ span.debug, span.admin {
   font-size: 15pt;
   float: left;
   border-radius: var(--circle-radius);
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
   user-select: none;
   transition: all 0.2s ease;
   backdrop-filter: blur(4px);
@@ -680,17 +553,6 @@ span.debug, span.admin {
 .whitecard {
   background: var(--circle-panel);
   color: var(--circle-text);
-}
-
-.whitecard:hover, .gamelist_lobby:hover {
-  background: var(--circle-panel);
-}
-
-.cah {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  margin: 15px;
 }
 
 .hide {
@@ -715,26 +577,6 @@ span.debug, span.admin {
   left: 0px;
   right: 0px;
   height: 30%;
-}
-
-.game_hand_filter {
-  height: 100%;
-  position: relative;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 100;
-  text-align: center;
-  border-radius: var(--circle-radius);
-}
-
-.game_hand_filter_text {
-  position: absolute;
-  top: 50%;
-  font-size: 300%;
-  margin-top: -30px;
-  background: var(--circle-panel);
-  padding: .25em;
-  border-radius: var(--circle-radius);
-  color: var(--circle-accent);
 }
 
 .game_hand_cards {
@@ -801,44 +643,6 @@ span.debug, span.admin {
   border-radius: var(--circle-radius);
   z-index: 500;
   padding: 12px;
-}
-
-.game_right_side_box {
-  height: 60%;
-  margin: 10px;
-}
-
-.game_right_side_cards {
-  margin-top: 15px;
-  min-width: 600px;
-  cursor: pointer;
-  z-index: 200;
-}
-
-.game_right_side_cards .card_holder, .game_white_cards_binder {
-  z-index: 200;
-}
-
-.game_white_cards_binder {
-  border: 2px solid var(--circle-accent);
-  display: inline-block;
-  margin-right: 4px;
-  margin-bottom: 4px;
-  border-radius: var(--circle-radius);
-  background: var(--circle-panel);
-}
-
-.card_holder {
-  float: left;
-  position: relative;
-  overflow-x: visible !important;
-  overflow-y: visible !important;
-  margin-right: 2px;
-  z-index: 1;
-}
-
-.game_white_cards_binder .card_holder {
-  margin-right: 0px;
 }
 
 .scoreboard {
@@ -968,9 +772,6 @@ span.debug, span.admin {
 .card_number {
   width: 20px;
   height: 20px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -o-border-radius: 10px;
   border-radius: 10px;
 }
 
@@ -1039,10 +840,6 @@ dfn {
   border-bottom: 1px dotted var(--circle-accent);
 }
 
-#tweetbox {
-  float: right;
-}
-
 .gamelink {
   cursor: pointer;
   text-decoration: underline;
@@ -1059,11 +856,155 @@ dfn {
   overflow: hidden;
 }
 
-/* Force chat to be wider - override jQuery UI */
-#tabs {
-  left: 260px !important;
-  right: 14px !important;
-  width: calc(100% - 280px) !important;
+.cardset_filter_list {
+  display: inline-block;
+  width: 33%;
+}
+
+.cardset_filter_list select {
+  height: 150px;
+  width: 100%;
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: 12px;
+  color: var(--circle-text);
+}
+
+.cardset_filter_list span {
+  font-weight: bold;
+  color: var(--circle-accent);
+}
+
+.cardset_filter_list .buttons {
+  text-align: center;
+}
+
+#tab-preferences input[type='button'] {
+  float: right;
+}
+
+#tab-preferences, #tab-gamelist-filters {
+  overflow-y: auto;
+  background: var(--circle-panel2);
+  padding: 12px;
+  border-radius: 12px;
+  color: var(--circle-text);
+}
+
+#tab-preferences label,
+#tab-gamelist-filters label {
+  color: var(--circle-text);
+}
+
+#tab-preferences input[type="text"],
+#tab-preferences textarea,
+#tab-gamelist-filters select {
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: 8px;
+  color: var(--circle-text);
+  padding: 6px 10px;
+}
+
+#tab-preferences input[type="button"] {
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: 40px;
+  color: var(--circle-text);
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+#tab-preferences input[type="button"]:hover {
+  background: var(--circle-accent-soft);
+  border-color: var(--circle-accent);
+  color: var(--circle-accent);
+}
+
+.cardset_filter_list select option {
+  background: var(--circle-bg);
+}
+
+fieldset legend {
+  color: var(--circle-accent);
+  font-weight: 500;
+}
+
+span.error {
+  color: #ff4444;
+}
+
+span.debug, span.admin {
+  color: #4488ff;
+}
+
+.cah {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  margin: 15px;
+}
+
+.game_hand_filter {
+  height: 100%;
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  text-align: center;
+  border-radius: var(--circle-radius);
+}
+
+.game_hand_filter_text {
+  position: absolute;
+  top: 50%;
+  font-size: 300%;
+  margin-top: -30px;
+  background: var(--circle-panel);
+  padding: .25em;
+  border-radius: var(--circle-radius);
+  color: var(--circle-accent);
+}
+
+.game_white_cards_binder {
+  border: 2px solid var(--circle-accent);
+  display: inline-block;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border-radius: var(--circle-radius);
+  background: var(--circle-panel);
+}
+
+.card_holder {
+  float: left;
+  position: relative;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  margin-right: 2px;
+  z-index: 1;
+}
+
+.game_white_cards_binder .card_holder {
+  margin-right: 0px;
+}
+
+.game_right_side_box {
+  height: 60%;
+  margin: 10px;
+}
+
+.game_right_side_cards {
+  margin-top: 15px;
+  min-width: 600px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.game_right_side_cards .card_holder, .game_white_cards_binder {
+  z-index: 200;
+}
+
+#tweetbox {
+  float: right;
 }
 
 /* ========== MOBILE RESPONSIVE STYLES ========== */
@@ -1109,10 +1050,10 @@ dfn {
   .game_hand_cards .card {
     display: inline-block;
     float: none;
-    width: 120px;
-    height: 120px;
-    font-size: 10pt;
-    padding: 8px;
+    width: 100px;
+    height: 100px;
+    font-size: 9pt;
+    padding: 6px;
   }
 
   .game_left_side {
@@ -1129,8 +1070,8 @@ dfn {
   }
 
   .game_black_card {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
   }
 
   .game_right_side {
@@ -1139,25 +1080,11 @@ dfn {
     width: 100%;
   }
 
-  .game_right_side_cards {
-    min-width: auto;
-  }
-
-  .game_white_cards_binder {
-    display: inline-block;
-    margin: 2px;
-  }
-
-  .game_white_cards_binder .card {
-    width: 100px;
-    height: 100px;
-  }
-
   .scoreboard {
     width: 100%;
     position: static;
     height: auto;
-    max-height: 200px;
+    max-height: 150px;
   }
 
   #info_area {
@@ -1169,14 +1096,13 @@ dfn {
   #tabs {
     width: 100%;
     position: static;
+    left: auto;
     right: auto;
-    left: auto !important;
   }
 
   #bottom {
     position: static;
     height: auto;
-    top: auto;
     margin-top: 20px;
   }
 
@@ -1213,32 +1139,32 @@ dfn {
   .gamelist_lobby {
     width: 100%;
     height: auto;
-    min-height: 150px;
+    min-height: 130px;
   }
 
   .gamelist_lobby_left {
-    width: 70%;
+    width: 65%;
   }
 
   .gamelist_lobby_right {
-    width: 28%;
+    width: 30%;
   }
 
   .chat {
     width: calc(100% - 58px);
-    font-size: 13px;
-    padding: 4px 8px;
+    font-size: 12px;
+    padding: 5px 10px;
   }
 
   .log {
-    height: 65px;
-    font-size: 12px;
+    height: 50px;
+    font-size: 11px;
   }
   
   .chat_submit {
     width: 45px;
     font-size: 11px;
-    padding: 4px 8px;
+    padding: 5px 8px;
   }
 }
 
@@ -1257,39 +1183,44 @@ dfn {
   }
 
   .card {
-    width: 100px;
-    height: 100px;
-    font-size: 9pt;
-    padding: 6px;
+    width: 80px;
+    height: 80px;
+    font-size: 8pt;
+    padding: 4px;
   }
 
   .game_black_card {
-    width: 140px;
-    height: 140px;
+    width: 110px;
+    height: 110px;
   }
 
   .game_white_cards_binder .card {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
   }
 
   .logo_text {
-    font-size: 6pt;
-    left: 35px;
+    font-size: 5pt;
+    left: 30px;
   }
 
   .logo_element {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 
   .logo_1 { left: 0px; }
-  .logo_2 { left: 8px; }
-  .logo_3 { left: 14px; top: 3px; }
+  .logo_2 { left: 7px; }
+  .logo_3 { left: 12px; top: 2px; }
   
   .chat_submit {
     width: 40px;
     font-size: 10px;
     padding: 4px 6px;
+  }
+  
+  .log {
+    height: 40px;
+    font-size: 10px;
   }
 }
