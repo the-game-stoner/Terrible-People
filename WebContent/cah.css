@@ -1,24 +1,8 @@
 /**
  * Copyright (c) 2012-2018, Andy Janata
  * All rights reserved.
- * * Redistribution and use in source and binary forms, with or without modification, are permitted
- * provided that the following conditions are met:
- * * * Redistributions of source code must retain the above copyright notice, this list of conditions
- * and the following disclaimer.
- * * Redistributions in binary form must reproduce the above copyright notice, this list of
- * conditions and the following disclaimer in the documentation and/or other materials provided
- * with the distribution.
- * * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
- * WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* The-Circle Theme */
 :root {
   --circle-bg: #070a0f;
   --circle-panel: rgba(255, 255, 255, 0.06);
@@ -31,200 +15,11 @@
   --circle-radius: 18px;
   --circle-radius-sm: 14px;
   --circle-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
-  --circle-shadow-sm: 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
-/* CRITICAL FIX: The master hidden state */
+/* THE FIX: Master hidden state used by the JS engine */
 .hide {
   display: none !important;
-}
-
-/* ========== WELCOME PAGE STYLES ========== */
-
-.welcome-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
-
-.welcome-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.02em;
-}
-
-.welcome-container h3 {
-  font-size: 1.2rem;
-  color: var(--circle-muted);
-  margin-bottom: 2rem;
-  font-weight: normal;
-}
-
-.info-box {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: var(--circle-radius);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
-.info-box ul {
-  margin: 0.5rem 0 0 1.5rem;
-  padding: 0;
-}
-
-.info-box li {
-  margin: 0.25rem 0;
-  color: var(--circle-muted);
-}
-
-.nickbox {
-  background: var(--circle-panel2);
-  border: 1px solid var(--circle-border);
-  border-radius: var(--circle-radius);
-  padding: 1.75rem;
-  margin: 1.5rem 0;
-  text-align: left;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.nickbox label {
-  display: block;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--circle-text);
-  margin-bottom: 0.4rem;
-  margin-top: 1rem;
-}
-
-.nickbox label:first-of-type {
-  margin-top: 0;
-}
-
-.nickbox dfn {
-  border-bottom: 1px dotted var(--circle-accent);
-  cursor: help;
-}
-
-.nickbox input[type="text"],
-.nickbox input[type="password"] {
-  display: block;
-  width: 100%;
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 12px;
-  padding: 12px 16px;
-  color: var(--circle-text);
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  box-sizing: border-box;
-  transition: all 0.2s ease;
-}
-
-.nickbox input[type="text"]:focus,
-.nickbox input[type="password"]:focus {
-  outline: none;
-  border-color: var(--circle-accent);
-  box-shadow: 0 0 0 3px var(--circle-accent-soft);
-}
-
-.nickbox input[type="text"]:disabled,
-.nickbox input[type="password"]:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.nickbox a {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: var(--circle-accent);
-  margin-top: 0.25rem;
-  margin-bottom: 0.75rem;
-  text-decoration: none;
-}
-
-.nickbox a:hover {
-  text-decoration: underline;
-}
-
-.nickbox #nicknameconfirm {
-  display: inline-block;
-  margin-top: 0.75rem;
-  padding: 10px 28px;
-  font-size: 1rem;
-  font-weight: bold;
-  background: var(--circle-accent);
-  color: #000;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.nickbox #nicknameconfirm:hover {
-  background: #0cdd00;
-  transform: scale(1.02);
-  box-shadow: 0 0 12px rgba(9, 255, 3, 0.3);
-}
-
-.nickbox .error {
-  display: block;
-  margin-top: 0.75rem;
-  color: #ff5555;
-  font-size: 0.85rem;
-}
-
-.button-container {
-  text-align: center;
-  margin: 1.5rem 0;
-}
-
-.btn-primary {
-  background: var(--circle-accent);
-  border: none;
-  border-radius: 40px;
-  padding: 12px 32px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  background: #0cdd00;
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(9, 255, 3, 0.3);
-}
-
-.footer-text {
-  font-size: 11px;
-  color: var(--circle-muted);
-  text-align: center;
-  margin-top: 2rem;
-  border-top: 1px solid var(--circle-border);
-  padding-top: 1.5rem;
-}
-
-.footer-text a {
-  color: var(--circle-accent);
-}
-
-details.info-box summary {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-details.info-box summary:hover {
-  color: var(--circle-accent);
-}
-
-/* ========== ORIGINAL GAME STYLES ========== */
-
-#gamebody {
-  overflow: hidden;
 }
 
 body {
@@ -236,900 +31,122 @@ body {
   font-size: 12px;
   margin: 0;
   font-family: ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
-.card, #game_list {
-  font-family: ui-sans-serif, system-ui, sans-serif;
+/* ========== WELCOME PAGE ========== */
+.welcome-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  text-align: center;
 }
 
-h2, h3, h4 {
-  margin: 0 0 .25em;
+.welcome-container h1 { font-size: 3rem; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.welcome-container h3 { color: var(--circle-muted); font-weight: normal; margin-bottom: 2rem; }
+
+.nickbox {
+  background: var(--circle-panel2);
+  border: 1px solid var(--circle-border);
+  border-radius: var(--circle-radius);
+  padding: 2rem;
+  max-width: 450px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.nickbox label { display: block; margin: 10px 0 5px; font-weight: bold; }
+.nickbox input[type="text"], .nickbox input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: 10px;
+  color: #white;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--circle-accent);
+  color: #000;
+  border: none;
+  padding: 14px;
+  border-radius: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* ========== GAME LAYOUT ========== */
+#canvass {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #menubar {
   background: var(--circle-panel2);
   border-bottom: 1px solid var(--circle-border);
-  backdrop-filter: blur(10px);
-  color: var(--circle-text);
-  height: 25px;
-  padding: .5em;
-}
-
-#menubar_left {
-  float: left;
-}
-
-#menubar_right {
-  float: right;
-}
-
-/* Ensure canvas shows up correctly when not hidden */
-#canvas:not(.hide) {
-  display: block;
-}
-
-#canvas {
-  height: 533px;
-  position: relative;
-  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #main {
-  height: 506px;
-  padding: .5em;
-}
-
-#welcome {
-  padding: 1em;
-}
-
-#game_list {
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-}
-
-.gamelist_lobby {
-  background: var(--circle-panel);
-  border-radius: var(--circle-radius);
-  width: 575px;
-  height: 175px;
-  float: left;
-  border: 1px solid var(--circle-border);
-  margin: 4px;
-  backdrop-filter: blur(4px);
-  transition: all 0.2s ease;
-}
-
-.gamelist_lobby:hover {
-  border-color: var(--circle-accent);
-  transform: translateY(-2px);
-  box-shadow: var(--circle-shadow);
-}
-
-.gamelist_lobby_left {
-  width: 77%;
-  height: 100%;
-  padding: .5em 1.5%;
-  float: left;
-}
-
-.gamelist_lobby_right {
-  width: 20%;
-  height: 100%;
-  float: right;
-}
-
-.gamelist_lobby_join {
-  width: 100%;
-  height: 75%;
-  border: 1px solid var(--circle-border);
-  background: var(--circle-panel);
-  border-radius: var(--circle-radius);
-  text-transform: uppercase;
-  font-weight: 700;
-  white-space: normal;
-  color: var(--circle-text);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.gamelist_lobby_join:hover {
-  background: var(--circle-accent-soft);
-  border-color: var(--circle-accent);
-  color: var(--circle-accent);
-}
-
-.gamelist_lobby_spectate {
-  width: 100%;
-  height: 25%;
-  border: 1px solid var(--circle-border);
-  background: var(--circle-panel2);
-  border-radius: var(--circle-radius);
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--circle-muted);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.gamelist_lobby_spectate:hover {
-  background: var(--circle-accent-soft);
-  border-color: var(--circle-accent);
-  color: var(--circle-accent);
-}
-
-.gamelist_lobby_status {
-  float: right;
-  font-weight: 700;
-}
-
-.gamelist_lobby_status_joinable {
-  color: var(--circle-accent);
-}
-
-.gamelist_lobby_status_unjoinable {
-  color: var(--circle-muted);
-}
-
-/* ========== CHAT SECTION ========== */
-
-/* Only apply flex layout when NOT hidden */
-#bottom:not(.hide) {
-  display: flex;
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
 }
 
 #bottom {
-  width: 100%;
-  height: 160px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: transparent;
-  z-index: 100;
-  padding: 0 10px 10px 10px;
-  box-sizing: border-box;
-}
-
-#info_area {
-  width: 250px;
-  height: 100%;
-  border: 1px solid var(--circle-border);
-  border-radius: var(--circle-radius);
-  background: var(--circle-panel2);
-  flex-shrink: 0;
-}
-
-#tabs {
-  flex-grow: 1;
-  margin-left: 14px;
-  height: 100%;
-  background: var(--circle-panel2);
-  border-radius: var(--circle-radius);
-  border: 1px solid var(--circle-border);
-  overflow: hidden;
+  height: 180px;
+  background: rgba(0,0,0,0.2);
+  border-top: 1px solid var(--circle-border);
   display: flex;
-  flex-direction: column;
+  padding: 10px;
+  gap: 15px;
 }
 
-#tabs .ui-tabs-nav {
-  background: var(--circle-panel);
-  border-bottom: 1px solid var(--circle-border);
-  padding: 0;
-  margin: 0;
-  flex-shrink: 0;
-}
+#info_area { width: 250px; background: var(--circle-panel2); border-radius: var(--circle-radius); }
+#tabs { flex: 1; background: var(--circle-panel2); border-radius: var(--circle-radius); display: flex; flex-direction: column; }
 
-#tabs .ui-tabs-tab a {
-  color: var(--circle-muted);
-  font-size: 0.8rem;
-  padding: 8px 12px;
-  display: inline-block;
-  text-decoration: none;
-}
-
-#tabs .ui-tabs-tab.ui-tabs-active a {
-  color: var(--circle-accent);
-  border-bottom: 2px solid var(--circle-accent);
-}
-
-#tab-global {
-  display: flex !important;
-  flex-direction: column;
-  flex-grow: 1;
-  height: calc(100% - 35px);
-  padding: 8px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.log {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 12px;
-  padding: 8px;
-  font-size: 12px;
-  color: var(--circle-text);
-  flex-grow: 1;
-  overflow-y: auto;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 8px;
-}
-
-.chat-input-wrapper {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.chat {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 20px;
-  padding: 8px 14px;
-  font-size: 12px;
-  color: var(--circle-text);
-  flex-grow: 1;
-  box-sizing: border-box;
-}
-
-.chat:focus {
-  outline: none;
-  border-color: var(--circle-accent);
-  box-shadow: 0 0 0 2px var(--circle-accent-soft);
-}
-
-.chat_submit {
-  background: var(--circle-accent);
-  border: none;
-  border-radius: 20px;
-  padding: 0 18px;
-  height: 34px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
-}
-
-.chat_submit:hover {
-  background: #0cdd00;
-  transform: scale(1.05);
-}
-
-/* ========== CARD STYLES ========== */
-
+/* ========== CARDS ========== */
 .card {
-  position: relative;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 240px;
+  padding: 20px;
+  border-radius: var(--circle-radius);
   border: 1px solid var(--circle-border);
+  font-size: 16px;
+  line-height: 1.4;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.blackcard { background: #000; color: #fff; border-top: 4px solid var(--circle-accent); }
+.whitecard { background: var(--circle-panel); color: #fff; }
+.card:hover { transform: translateY(-5px); border-color: var(--circle-accent); }
+
+.logo_text { position: absolute; bottom: 15px; left: 15px; font-weight: bold; font-size: 10px; color: var(--circle-muted); }
+
+/* ========== CHAT ========== */
+.log { flex: 1; overflow-y: auto; padding: 10px; font-family: monospace; }
+.chat-input-wrapper { display: flex; padding: 10px; gap: 10px; }
+.chat { flex: 1; background: var(--circle-panel); border: 1px solid var(--circle-border); border-radius: 20px; color: #fff; padding: 8px 15px; }
+.chat_submit { background: var(--circle-accent); border: none; border-radius: 20px; padding: 0 20px; font-weight: bold; cursor: pointer; }
+
+/* ========== GAMELIST ========== */
+.gamelist_lobby {
+  background: var(--circle-panel);
+  border: 1px solid var(--circle-border);
+  border-radius: var(--circle-radius);
   padding: 15px;
-  font-size: 15pt;
-  float: left;
-  border-radius: var(--circle-radius);
-  user-select: none;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(4px);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--circle-accent);
-  box-shadow: var(--circle-shadow);
-}
-
-.blackcard {
-  background: linear-gradient(135deg, var(--circle-panel2), var(--circle-panel));
-  color: var(--circle-text);
-  border-top: 3px solid var(--circle-accent);
-}
-
-.whitecard {
-  background: var(--circle-panel);
-  color: var(--circle-text);
-}
-
-.game {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-.your_hand {
-  position: absolute;
-  bottom: 10px;
-  right: 5px;
-}
-
-.game_hand {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  height: 30%;
-}
-
-.game_hand_cards {
-  position: absolute;
-  bottom: 0px;
-  height: 100%;
-  width: 99%;
-  padding-left: 2px;
-  min-width: 750px;
-}
-
-.game_hand_cards .card {
-  cursor: pointer;
-}
-
-.game_top {
-  padding: 5px;
-}
-
-.game_menu_bar {
-  float: right;
-}
-
-.game_message {
-  font-size: 150%;
-  font-weight: bold;
-  color: var(--circle-accent);
-}
-
-.game_black_card_wrapper {
-  width: 232px;
-  float: left;
-}
-
-.game_black_card {
-  width: 232px;
-  height: 232px;
-  margin-top: 15px;
-}
-
-.confirm_card {
-  float: left;
-  margin-top: 10px;
-  width: 100%;
-  z-index: 500;
-}
-
-.game_left_side {
-  float: left;
-  width: 232px;
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
-.game_right_side, .game_options {
-  position: absolute;
-  left: 246px;
-  width: 1000px;
-}
-
-.game_options {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: var(--circle-radius);
-  z-index: 500;
-  padding: 12px;
-}
-
-.scoreboard {
-  width: 250px;
-  height: 100%;
-  position: absolute;
-  overflow-y: scroll;
-}
-
-.scorecard {
-  background: var(--circle-panel);
-  height: 42px;
-  padding: .25em .5em;
-  border-bottom: 1px solid var(--circle-border);
-  font-size: 11pt;
-  border-radius: 12px;
-  margin-bottom: 4px;
-}
-
-.scorecard:nth-child(even) {
-  background: var(--circle-panel2);
-}
-
-.scorecard_status {
-  float: right;
-  margin-right: 5px;
-}
-
-.clear {
-  clear: both;
-}
-
-.selected {
-  color: #000 !important;
-  background: var(--circle-accent) !important;
-  border-color: var(--circle-accent) !important;
-}
-
-.logo {
-  position: absolute;
-  width: 250px;
-  height: 32px;
-  bottom: 15px;
-  left: 15px;
-}
-
-.logo_element {
-  top: 2px;
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
-}
-
-.blackcard .logo_element {
-  background: var(--circle-panel);
-}
-
-.logo_1 {
-  left: 2px;
-}
-
-.blackcard .logo_1 {
-  background: #57585a;
-}
-
-.whitecard .logo_1 {
-  background: var(--circle-accent);
-}
-
-.logo_2 {
-  left: 10px;
-}
-
-.blackcard .logo_2 {
-  background: #b2b3b7;
-}
-
-.whitecard .logo_2 {
-  background: #09ff03;
-}
-
-.logo_3 {
-  left: 16px;
-  top: 5px;
-}
-
-.blackcard .logo_3 {
-  background: white;
-  color: black;
-}
-
-.whitecard .logo_3 {
-  background: var(--circle-accent);
-  color: black;
-}
-
-.watermark_container {
-  font-size: 5pt;
-  text-align: center;
-}
-
-.logo_text {
-  position: absolute;
-  font-size: 8pt;
-  font-weight: bold;
-  left: 45px;
-  bottom: 4px;
-  color: var(--circle-muted);
-}
-
-.card_metadata {
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
-  color: var(--circle-muted);
-}
-
-.draw, .pick {
-  float: right;
-  clear: both;
-  font-weight: bold;
-  font-size: 12pt;
-  color: var(--circle-accent);
-}
-
-.card_number {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-}
-
-.blackcard .card_number {
-  background: var(--circle-accent);
-  display: inline-block;
-  color: #000;
-  text-align: center;
-}
-
-.previous_round {
-  z-index: 50;
-  border: 2px solid var(--circle-accent);
-  border-radius: var(--circle-radius);
-  width: 60%;
-  height: 60%;
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  padding: 5px;
-  background: var(--circle-panel);
-  backdrop-filter: blur(12px);
-}
-
-.previous_round_close {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-}
-
-.card_set_label {
-  margin-right: 15px;
-  color: var(--circle-accent);
-}
-
-.scorecard_score, .scorecard_player {
-  font-weight: 700;
-}
-
-.checkbox {
-  margin-right: 4px;
-  white-space: nowrap;
-}
-
-.checkbox input {
-  vertical-align: middle;
-}
-
-.checkbox span {
-  vertical-align: middle;
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-.cardnum {
-  position: absolute;
-  right: 10px;
-  bottom: 19px;
-  font-size: 8pt;
-  color: var(--circle-muted);
-}
-
-dfn {
-  border-bottom: 1px dotted var(--circle-accent);
-}
-
-.gamelink {
-  cursor: pointer;
-  text-decoration: underline;
-  color: var(--circle-accent);
-}
-
-.imagecard {
-  height: 100%;
-  width: 100%;
-}
-
-.card_text {
-  word-wrap: break-word;
-  overflow: hidden;
-}
-
-.cardset_filter_list {
-  display: inline-block;
-  width: 33%;
-}
-
-.cardset_filter_list select {
-  height: 150px;
-  width: 100%;
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 12px;
-  color: var(--circle-text);
-}
-
-.cardset_filter_list span {
-  font-weight: bold;
-  color: var(--circle-accent);
-}
-
-.cardset_filter_list .buttons {
-  text-align: center;
-}
-
-#tab-preferences input[type='button'] {
-  float: right;
-}
-
-#tab-preferences, #tab-gamelist-filters {
-  overflow-y: auto;
-  background: var(--circle-panel2);
-  padding: 12px;
-  border-radius: 12px;
-  color: var(--circle-text);
-}
-
-#tab-preferences label,
-#tab-gamelist-filters label {
-  color: var(--circle-text);
-}
-
-#tab-preferences input[type="text"],
-#tab-preferences textarea,
-#tab-gamelist-filters select {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 8px;
-  color: var(--circle-text);
-  padding: 6px 10px;
-}
-
-#tab-preferences input[type="button"] {
-  background: var(--circle-panel);
-  border: 1px solid var(--circle-border);
-  border-radius: 40px;
-  color: var(--circle-text);
-  padding: 6px 14px;
-  cursor: pointer;
-}
-
-#tab-preferences input[type="button"]:hover {
-  background: var(--circle-accent-soft);
-  border-color: var(--circle-accent);
-  color: var(--circle-accent);
-}
-
-.cardset_filter_list select option {
-  background: var(--circle-bg);
-}
-
-fieldset legend {
-  color: var(--circle-accent);
-  font-weight: 500;
-}
-
-span.error {
-  color: #ff4444;
-}
-
-span.debug, span.admin {
-  color: #4488ff;
-}
-
-.cah {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  margin: 15px;
-}
-
-.game_hand_filter {
-  height: 100%;
-  position: relative;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 100;
-  text-align: center;
-  border-radius: var(--circle-radius);
-}
-
-.game_hand_filter_text {
-  position: absolute;
-  top: 50%;
-  font-size: 300%;
-  margin-top: -30px;
-  background: var(--circle-panel);
-  padding: .25em;
-  border-radius: var(--circle-radius);
-  color: var(--circle-accent);
-}
-
-.game_white_cards_binder {
-  border: 2px solid var(--circle-accent);
-  display: inline-block;
-  margin-right: 4px;
-  margin-bottom: 4px;
-  border-radius: var(--circle-radius);
-  background: var(--circle-panel);
-}
-
-.card_holder {
-  float: left;
-  position: relative;
-  overflow-x: visible !important;
-  overflow-y: visible !important;
-  margin-right: 2px;
-  z-index: 1;
-}
-
-.game_white_cards_binder .card_holder {
-  margin-right: 0px;
-}
-
-.game_right_side_box {
-  height: 60%;
   margin: 10px;
-}
-
-.game_right_side_cards {
-  margin-top: 15px;
-  min-width: 600px;
-  cursor: pointer;
-  z-index: 200;
-}
-
-.game_right_side_cards .card_holder, .game_white_cards_binder {
-  z-index: 200;
-}
-
-#tweetbox {
-  float: right;
-}
-
-/* ========== MOBILE RESPONSIVE STYLES ========== */
-
-@media (max-width: 768px) {
-  body {
-    font-size: 10px;
-  }
-
-  .welcome-container {
-    padding: 1rem;
-  }
-
-  .welcome-container h1 {
-    font-size: 1.8rem;
-  }
-
-  .welcome-container h3 {
-    font-size: 1rem;
-  }
-
-  .nickbox {
-    padding: 1rem;
-  }
-  
-  .nickbox input[type="text"],
-  .nickbox input[type="password"] {
-    font-size: 0.9rem;
-    padding: 10px 14px;
-  }
-
-  .btn-primary {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .game_hand_cards {
-    min-width: auto;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  .game_hand_cards .card {
-    display: inline-block;
-    float: none;
-    width: 100px;
-    height: 100px;
-    font-size: 9pt;
-    padding: 6px;
-  }
-
-  .game_left_side {
-    width: 100%;
-    float: none;
-    text-align: center;
-  }
-
-  .game_black_card_wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .game_black_card {
-    width: 140px;
-    height: 140px;
-  }
-
-  .game_right_side {
-    position: static;
-    left: auto;
-    width: 100%;
-  }
-
-  .scoreboard {
-    width: 100%;
-    position: static;
-    height: auto;
-    max-height: 150px;
-  }
-
-  #info_area {
-    width: 100%;
-    position: static;
-    margin-bottom: 10px;
-    height: 80px;
-  }
-
-  #tabs {
-    width: 100%;
-    position: static;
-    left: auto;
-    right: auto;
-    height: 200px;
-    margin-left: 0;
-  }
-
-  #bottom {
-    position: static;
-    height: auto;
-    margin-top: 20px;
-    flex-direction: column;
-  }
-
-  /* Again, only apply display layout when visible */
-  #bottom:not(.hide) {
-    display: block;
-  }
-
-  #canvas {
-    height: auto;
-  }
-
-  #main {
-    height: auto;
-  }
-
-  .game_hand {
-    position: static;
-    height: auto;
-    margin-top: 20px;
-  }
-
-  .your_hand {
-    position: static;
-    text-align: center;
-    display: block;
-  }
-
-  .game_top {
-    text-align: center;
-  }
-
-  .game_menu_bar {
-    float: none;
-    display: inline-block;
-    margin: 0 5px;
-  }
-
-  .gamelist_lobby {
-    width: 100%;
-    height: auto;
-    min-height: 130px;
-  }
-
-  .gamelist_lobby_left {
-    width: 65%;
-  }
-
-  .gamelist_lobby_right {
-    width: 30%;
-  }
+  width: 300px;
+  float: left;
 }
