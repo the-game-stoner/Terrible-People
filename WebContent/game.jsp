@@ -82,44 +82,102 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <body id="gamebody">
 
 <div id="welcome">
-  <h1 tabindex="0">
-    Terrible People
+  <h1 style="font-size: 36px; margin-bottom: 16px;">
+    <span style="color: #09ff03;">Terrible People</span>
   </h1>
-  <h3>A <a href="http://cardsagainsthumanity.com/">Cards Against Humanity</a> game room hosted by <a href="https://www.the-circle.xyz">The-Circle.xyz</a>.</h3>
-  <p>
-    If this is your first time playing, you may wish to read <a href="index.jsp">the changelog and
-    list of known issues</a>.
-  </p>
-  <p>
-    Your computer's IP address will <strong>always</strong> be logged when you load the game client.
-    It is not tied in any way to your username, except possibly if a server error occurs. Gameplay
-    results are logged permanently, but without information identifying you.
-  </p>
-  <div id="nickbox">
-    <label for="nickname">Nickname:</label>
-    <input type="text" id="nickname" value="" maxlength="30" role="textbox"
-        aria-label="Enter your nickname." data-lpignore="true" />
-    <label for="idcode">
-    <dfn title="Only available via HTTPS. Provide a secret identification code to positively identify yourself in the chat.">
-    Optional identification code:</dfn></label>
-    <input type="password" id="idcode" value="" maxlength="100" disabled="disabled"
-        aria-label="Optionally enter an identification code." />
-    <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes">(Help)</a>
-    <input type="button" id="nicknameconfirm" value="Set" />
-    <span id="nickbox_error" class="error"></span>
+  <h3 style="font-size: 20px; font-weight: normal; margin-bottom: 24px;">
+    A <a href="http://cardsagainsthumanity.com/" style="color: #09ff03;">Cards Against Humanity</a> game room hosted by <a href="https://www.the-circle.xyz" style="color: #09ff03;">The-Circle.xyz</a>
+  </h3>
+  
+  <div style="font-size: 16px; line-height: 1.5; margin-bottom: 20px;">
+    <p>Your IP is logged for security only. Gameplay stats are anonymous.</p>
+    <p><a href="index.jsp" style="color: #09ff03;">Game rules & known issues →</a></p>
   </div>
-  <p><a href="privacy.html"><strong>Hey, this is important:</strong> Read the privacy page for
-  details about what gameplay information is collected and how it's shared.</a></p>
-  <p>
-    Pretend You're Xyzzy is a Cards Against Humanity clone, which is available at
-    <a href="http://www.cardsagainsthumanity.com/">cardsagainsthumanity.com</a>, where you can buy
-    it or download and print it out yourself. It is distributed under a
-    <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons - Attribution -
-    Noncommercial - Share Alike license</a>. This web version is in no way endorsed or sponsored by
-    cardsagainsthumanity.com. You may download the source code to this version from
-    <a href="https://github.com/the-game-stoner/Terrible-People">GitHub</a>. For full license
-    information, including information about included libraries, see the
-    <a href="license.html">full license information</a>.
+
+  <div id="nickbox" style="
+    background: rgba(255,255,255,0.04);
+    border-radius: 24px;
+    padding: 28px;
+    margin: 24px 0;
+    border: 1px solid rgba(255,255,255,0.12);
+  ">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px;">
+      <div style="flex: 2; min-width: 200px;">
+        <label for="nickname" style="
+          display: block;
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #09ff03;
+          margin-bottom: 8px;
+        ">🎭 NICKNAME</label>
+        <input type="text" id="nickname" value="" maxlength="30" role="textbox"
+            aria-label="Enter your nickname." data-lpignore="true" style="
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 16px;
+            color: white;
+        "/>
+      </div>
+      
+      <div style="flex: 2; min-width: 200px;">
+        <label for="idcode" style="
+          display: block;
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #09ff03;
+          margin-bottom: 8px;
+        ">🔑 OPTIONAL ID CODE</label>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <input type="password" id="idcode" value="" maxlength="100" disabled="disabled"
+              aria-label="Optionally enter an identification code." style="
+              flex: 1;
+              background: rgba(0,0,0,0.5);
+              border: 1px solid rgba(255,255,255,0.15);
+              border-radius: 14px;
+              padding: 14px 18px;
+              font-size: 16px;
+              color: white;
+          "/>
+          <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes" 
+             style="color: #09ff03; text-decoration: none; font-size: 13px; white-space: nowrap;"
+             title="An optional secret code to prove your identity in chat. Only works over HTTPS.">
+            What's this? ⓘ
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <input type="button" id="nicknameconfirm" value="▶ ENTER GAME" style="
+            background: linear-gradient(135deg, #09ff03 0%, #0dcc00 100%);
+            border: none;
+            border-radius: 40px;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #070a0f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        "/>
+      </div>
+    </div>
+    <span id="nickbox_error" class="error" style="display: block; margin-top: 14px; font-size: 14px; color: #ff5555;"></span>
+  </div>
+
+  <p style="font-size: 14px;">
+    <a href="privacy.html" style="color: #09ff03;"><strong>Privacy Info →</strong></a> How your data is handled.
+  </p>
+  <p style="font-size: 12px; color: rgba(255,255,255,0.5);">
+    Based on Cards Against Humanity. Not endorsed by them. 
+    <a href="https://github.com/the-game-stoner/Terrible-People" style="color: #09ff03;">Source code</a> available under Creative Commons license.
   </p>
 </div>
 
