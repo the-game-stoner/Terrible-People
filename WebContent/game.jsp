@@ -60,9 +60,6 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/cah.js"></script>
 <script type="text/javascript" src="js/cah.config.js"></script>
-<%-- cah must be first, ajax must be before app. app probably has to be last. --%>
-<%-- TODO make this be dynamic with looking at the filesystem and using jquery --%>
-<%-- except that is nontrivial thanks to dependency ordering -_- --%>
 <script type="text/javascript" src="js/cah.constants.js"></script>
 <script type="text/javascript" src="js/cah.log.js"></script>
 <script type="text/javascript" src="js/cah.gamelist.js"></script>
@@ -82,102 +79,95 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <body id="gamebody">
 
 <div id="welcome">
-  <h1 style="font-size: 36px; margin-bottom: 16px;">
+  <h1 style="font-size: 42px; margin-bottom: 16px;">
     <span style="color: #09ff03;">Terrible People</span>
   </h1>
-  <h3 style="font-size: 20px; font-weight: normal; margin-bottom: 24px;">
+  <h3 style="font-size: 22px; font-weight: normal; margin-bottom: 24px;">
     A <a href="http://cardsagainsthumanity.com/" style="color: #09ff03;">Cards Against Humanity</a> game room hosted by <a href="https://www.the-circle.xyz" style="color: #09ff03;">The-Circle.xyz</a>
   </h3>
   
-  <div style="font-size: 16px; line-height: 1.5; margin-bottom: 20px;">
+  <div style="font-size: 18px; line-height: 1.6; margin-bottom: 24px;">
     <p>Your IP is logged for security only. Gameplay stats are anonymous.</p>
-    <p><a href="index.jsp" style="color: #09ff03;">Game rules & known issues →</a></p>
   </div>
 
   <div id="nickbox" style="
     background: rgba(255,255,255,0.04);
-    border-radius: 24px;
-    padding: 28px;
-    margin: 24px 0;
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 0;
     border: 1px solid rgba(255,255,255,0.12);
   ">
-    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px;">
-      <div style="flex: 2; min-width: 200px;">
-        <label for="nickname" style="
-          display: block;
-          font-size: 12px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          color: #09ff03;
-          margin-bottom: 8px;
-        ">🎭 NICKNAME</label>
-        <input type="text" id="nickname" value="" maxlength="30" role="textbox"
-            aria-label="Enter your nickname." data-lpignore="true" style="
+    <div style="margin-bottom: 16px;">
+      <label for="nickname" style="
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        color: #09ff03;
+        margin-bottom: 8px;
+      ">🎭 Nickname:</label>
+      <input type="text" id="nickname" value="" maxlength="30" role="textbox"
+          aria-label="Enter your nickname." data-lpignore="true" style="
+          width: 100%;
+          max-width: 300px;
+          background: rgba(0,0,0,0.5);
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 12px;
+          padding: 12px 16px;
+          font-size: 16px;
+          color: white;
+      "/>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+      <label for="idcode" style="
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        color: #09ff03;
+        margin-bottom: 8px;
+      ">🔑 Optional identification code:</label>
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <input type="password" id="idcode" value="" maxlength="100" disabled="disabled"
+            aria-label="Optionally enter an identification code." style="
             width: 100%;
+            max-width: 300px;
             background: rgba(0,0,0,0.5);
             border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 14px;
-            padding: 14px 18px;
+            border-radius: 12px;
+            padding: 12px 16px;
             font-size: 16px;
             color: white;
         "/>
-      </div>
-      
-      <div style="flex: 2; min-width: 200px;">
-        <label for="idcode" style="
-          display: block;
-          font-size: 12px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          color: #09ff03;
-          margin-bottom: 8px;
-        ">🔑 OPTIONAL ID CODE</label>
-        <div style="display: flex; gap: 12px; align-items: center;">
-          <input type="password" id="idcode" value="" maxlength="100" disabled="disabled"
-              aria-label="Optionally enter an identification code." style="
-              flex: 1;
-              background: rgba(0,0,0,0.5);
-              border: 1px solid rgba(255,255,255,0.15);
-              border-radius: 14px;
-              padding: 14px 18px;
-              font-size: 16px;
-              color: white;
-          "/>
-          <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes" 
-             style="color: #09ff03; text-decoration: none; font-size: 13px; white-space: nowrap;"
-             title="An optional secret code to prove your identity in chat. Only works over HTTPS.">
-            What's this? ⓘ
-          </a>
-        </div>
-      </div>
-      
-      <div>
-        <input type="button" id="nicknameconfirm" value="▶ ENTER GAME" style="
-            background: linear-gradient(135deg, #09ff03 0%, #0dcc00 100%);
-            border: none;
-            border-radius: 40px;
-            padding: 14px 32px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #070a0f;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        "/>
+        <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes" 
+           style="color: #09ff03; text-decoration: none; font-size: 13px;">
+          What's this? ⓘ
+        </a>
       </div>
     </div>
+    
+    <div>
+      <input type="button" id="nicknameconfirm" value="▶ ENTER GAME" style="
+          background: linear-gradient(135deg, #09ff03 0%, #0dcc00 100%);
+          border: none;
+          border-radius: 40px;
+          padding: 12px 28px;
+          font-size: 16px;
+          font-weight: bold;
+          color: #070a0f;
+          cursor: pointer;
+          transition: all 0.2s ease;
+      "/>
+    </div>
+    
     <span id="nickbox_error" class="error" style="display: block; margin-top: 14px; font-size: 14px; color: #ff5555;"></span>
   </div>
 
   <p style="font-size: 14px;">
     <a href="privacy.html" style="color: #09ff03;"><strong>Privacy Info →</strong></a> How your data is handled.
   </p>
-  <p style="font-size: 12px; color: rgba(255,255,255,0.5);">
+  <p style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 16px;">
     Based on Cards Against Humanity. Not endorsed by them. 
-    <a href="https://github.com/the-game-stoner/Terrible-People" style="color: #09ff03;">Source code</a> available under Creative Commons license.
+    <a href="https://github.com/the-game-stoner/Terrible-People" style="color: #09ff03;">Source code</a>
   </p>
 </div>
 
