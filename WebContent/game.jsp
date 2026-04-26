@@ -17,7 +17,7 @@ Copyright (c) 2012-2020, Andy Janata | Modified for Terrible People
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terrible People — Join a Game</title>
+    <title>Terrible People — The-Circle</title>
     
     <link rel="stylesheet" href="cah.css" />
     <link rel="stylesheet" href="jquery-ui.min.css" />
@@ -25,95 +25,108 @@ Copyright (c) 2012-2020, Andy Janata | Modified for Terrible People
 
     <style>
         :root {
-            --bg-color: #121212;
-            --card-white: #ffffff;
-            --card-black: #1e1e1e;
+            --bg: #121212;
+            --panel: #1e1e1e;
             --accent: #ff3e3e;
-            --text-main: #e0e0e0;
+            --text: #e0e0e0;
+            --card-white: #ffffff;
+            --card-black: #000000;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Welcome Screen Styling */
+        /* Login Screen */
         .welcome-container {
-            max-width: 500px;
-            margin: 60px auto;
+            max-width: 600px;
+            margin: 50px auto;
             padding: 30px;
-            background: #1d1d1d;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: var(--panel);
+            border-radius: 15px;
             text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
 
-        h1 { font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem; color: #fff; }
-        h3 { font-weight: 400; opacity: 0.8; margin-bottom: 2rem; }
-
-        .nickbox {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align: left;
-        }
-
-        label { font-weight: 600; font-size: 0.9rem; color: #bbb; }
-
-        input[type="text"], input[type="password"] {
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #333;
-            background: #2a2a2a;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 6px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-            margin-top: 10px;
-        }
-
-        .btn-primary:hover {
-            background: #ff5e5e;
-            transform: translateY(-2px);
-        }
-
-        /* Game Layout */
+        /* Game Board Layout Fixes */
+        #canvas { padding: 15px; }
+        
         #menubar {
-            background: #1a1a1a;
+            background: #252525;
             padding: 10px 20px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #333;
+            margin-bottom: 20px;
+        }
+
+        #main_holder { display: flex; flex-wrap: wrap; gap: 20px; }
+
+        /* The "Fucked Up" Parts - Fixing template displays */
+        .game_left_side { float: left; width: 250px; }
+        .game_right_side { margin-left: 270px; min-height: 300px; }
+        .game_hand { clear: both; padding-top: 20px; border-top: 1px solid #333; margin-top: 20px; }
+        
+        .card {
+            border-radius: 10px;
+            padding: 15px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
+        .blackcard { background: var(--card-black); color: white; border: 1px solid #444; }
+        .whitecard { background: var(--card-white); color: black; }
+
+        input[type="button"], button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        input[type="button"]:hover { background: var(--accent); }
+        
+        #nicknameconfirm {
+            background: var(--accent);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            margin-top: 20px;
         }
 
         .hide { display: none !important; }
-        
-        .footer-text { margin-top: 30px; font-size: 0.8rem; opacity: 0.6; line-height: 1.6; }
-        .footer-text a { color: var(--accent); text-decoration: none; }
+
+        /* Tabs styling */
+        #tabs { background: var(--panel); border-radius: 8px; margin-top: 20px; }
+        .ui-tabs-nav { background: transparent; border: none; border-bottom: 1px solid #333; }
+        .ui-tabs-panel { padding: 20px; }
+
+        #nickbox input {
+            padding: 12px;
+            width: 100%;
+            max-width: 300px;
+            background: #111;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
     </style>
 
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/jquery.json.js"></script>
     <script src="js/QTransform.js"></script>
-    
+    <script src="js/jquery-ui.min.js"></script>
     <script src="js/cah.js"></script>
     <script src="js/cah.config.js"></script>
     <script src="js/cah.constants.js"></script>
@@ -136,49 +149,37 @@ Copyright (c) 2012-2020, Andy Janata | Modified for Terrible People
 <div id="welcome" class="welcome-container">
     <h1>🎉 Terrible People</h1>
     <h3>A party game for The-Circle community</h3>
-
-    <div class="info-box">
-        <p>✨ Choose a nickname and join the fun!</p>
+    
+    <div id="nickbox">
+        <label for="nickname">Choose a Nickname:</label><br/>
+        <input type="text" id="nickname" maxlength="30" placeholder="e.g., CircleKing" /><br/>
+        
+        <label for="idcode">Identification Code (Optional):</label><br/>
+        <input type="password" id="idcode" maxlength="100" disabled /><br/>
+        
+        <input type="button" id="nicknameconfirm" value="Join the Chaos →" />
+        <div id="nickbox_error" class="error"></div>
     </div>
 
-    <div id="nickbox" class="nickbox">
-        <div>
-            <label for="nickname">🎭 Your Nickname</label>
-            <input type="text" id="nickname" maxlength="30" placeholder="e.g., FunnyGuy" style="width: 100%; box-sizing: border-box;" />
-        </div>
-        
-        <div>
-            <label for="idcode">🔐 Identification Code (Optional)</label>
-            <input type="password" id="idcode" maxlength="100" disabled placeholder="Disabled for now" style="width: 100%; box-sizing: border-box;" />
-            <small><a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes" target="_blank">What's this?</a></small>
-        </div>
-        
-        <span id="nickbox_error" class="error"></span>
-        
-        <button type="button" class="btn-primary" id="nicknameconfirm">
-            🎮 Set Nickname & Enter Game
-        </button>
+    <div style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">
+        Inspired by Cards Against Humanity. Please play responsibly.
     </div>
-
-    <p class="footer-text">
-        Inspired by Cards Against Humanity.<br />
-        <a href="#">Source code</a> • <a href="#">License</a> • <a href="#">Privacy</a>
-    </p>
 </div>
 
 <div id="canvas" class="hide">
     <div id="menubar">
         <div id="menubar_left">
-            <input type="button" id="refresh_games" class="hide" value="Refresh" />
+            <input type="button" id="refresh_games" class="hide" value="Refresh Games" />
             <input type="button" id="create_game" class="hide" value="Create Game" />
-            <input type="text" id="filter_games" class="hide" placeholder="Filter games" />
-            <input type="button" id="leave_game" class="hide" value="Leave" />
-            <input type="button" id="start_game" class="hide" value="Start" />
+            <input type="text" id="filter_games" class="hide" placeholder="Filter games..." />
+            <input type="button" id="leave_game" class="hide" value="Leave Game" />
+            <input type="button" id="start_game" class="hide" value="Start Game" />
+            <input type="button" id="stop_game" class="hide" value="Stop Game" />
         </div>
         <div id="menubar_right">
-            <span>Timer: <b id="current_timer">0</b>s</span>
+            Timer: <span id="current_timer">0</span>s
             <input type="button" id="view_cards" value="View Cards" onclick="window.open('viewcards.jsp', 'viewcards');" />
-            <input type="button" id="logout" value="Log out" />
+            <input type="button" id="logout" value="Logout" />
         </div>
     </div>
 
@@ -192,26 +193,27 @@ Copyright (c) 2012-2020, Andy Janata | Modified for Terrible People
     <div id="info_area"></div>
     <div id="tabs">
         <ul>
-            <li><a href="#tab-preferences">Settings</a></li>
+            <li><a href="#tab-preferences">Preferences</a></li>
             <li><a href="#tab-gamelist-filters">Filters</a></li>
             <li><a href="#tab-global">Global Chat</a></li>
         </ul>
-        
         <div id="tab-preferences">
-            <div class="tab-controls">
-                <button onclick="cah.Preferences.save();">Save Settings</button>
-                <label><input type="checkbox" id="hide_connect_quit" /> Hide connect/quit events</label>
-                <label><input type="checkbox" id="no_persistent_id" /> Opt-out of tracking</label>
-            </div>
+            <button onclick="cah.Preferences.save();">Save</button>
+            <label><input type="checkbox" id="hide_connect_quit" /> Hide Connect/Quit</label><br/>
             <textarea id="ignore_list" placeholder="Ignore list (one per line)"></textarea>
         </div>
-
+        <div id="tab-gamelist-filters">
+            <fieldset>
+                <legend>Card Set Filters</legend>
+                <select id="cardsets_banned" multiple></select>
+                <select id="cardsets_neutral" multiple></select>
+                <select id="cardsets_required" multiple></select>
+            </fieldset>
+        </div>
         <div id="tab-global">
             <div class="log" style="height: 150px; overflow-y: auto; background: #000; padding: 10px; margin-bottom: 5px;"></div>
-            <div style="display: flex; gap: 5px;">
-                <input type="text" class="chat" maxlength="200" style="flex-grow: 1;" />
-                <input type="button" class="chat_submit" value="Send" />
-            </div>
+            <input type="text" class="chat" maxlength="200" style="width: 80%" />
+            <input type="button" class="chat_submit" value="Chat" />
         </div>
     </div>
 </div>
@@ -219,10 +221,9 @@ Copyright (c) 2012-2020, Andy Janata | Modified for Terrible People
 <div class="hide">
     <div id="gamelist_lobby_template" class="gamelist_lobby">
         <div class="gamelist_lobby_left">
-            <h3><span class="gamelist_lobby_host"></span>'s Game</h3>
-            <div class="stats">
-                <b>Players:</b> <span class="gamelist_lobby_player_count"></span>/<span class="gamelist_lobby_max_players"></span>
-            </div>
+            <h3><span class="gamelist_lobby_host"></span>'s Game (<span class="gamelist_lobby_player_count"></span>/<span class="gamelist_lobby_max_players"></span>)</h3>
+            <div><strong>Players:</strong> <span class="gamelist_lobby_players"></span></div>
+            <div><strong>Goal:</strong> <span class="gamelist_lobby_goal"></span></div>
         </div>
         <div class="gamelist_lobby_right">
             <input type="button" class="gamelist_lobby_join" value="Join" />
@@ -232,15 +233,65 @@ Copyright (c) 2012-2020, Andy Janata | Modified for Terrible People
     <div id="black_up_template" class="card blackcard">
         <span class="card_text"></span>
         <div class="logo"><div class="logo_text">Terrible People</div></div>
+        <div class="card_metadata">
+            <div class="pick hide">PICK <div class="card_number"></div></div>
+        </div>
     </div>
 
     <div id="white_up_template" class="card whitecard">
         <span class="card_text"></span>
         <div class="logo"><div class="logo_text">Terrible People</div></div>
     </div>
+
+    <div id="game_template" class="game">
+        <div class="game_top">
+            <input type="button" class="game_show_options" value="Game Options" />
+            <div class="game_message">Waiting...</div>
+        </div>
+        <div class="game_main_area">
+            <div class="game_left_side">
+                <div class="game_black_card"></div>
+                <input type="button" class="confirm_card" value="Confirm Selection" />
+            </div>
+            <div class="game_options"></div>
+            <div class="game_right_side hide">
+                <div class="game_white_cards game_right_side_cards"></div>
+            </div>
+        </div>
+        <div class="game_hand">
+            <div class="game_hand_cards"></div>
+        </div>
+    </div>
+
+    <div id="scoreboard_template" class="scoreboard"></div>
+    <div id="scorecard_template" class="scorecard">
+        <span class="scorecard_player"></span>: <span class="scorecard_score">0</span> pts
+        <span class="scorecard_status"></span>
+    </div>
+
+    <div class="game_options" id="game_options_template">
+        <fieldset>
+            <legend>Options</legend>
+            Score limit: 
+            <select id="score_limit_template" class="score_limit">
+                <% for (int i = injector.getInstance(Key.get(Integer.class, MinScoreLimit.class)); i <= injector.getInstance(Key.get(Integer.class, MaxScoreLimit.class)); i++) { %>
+                    <option <%=(i == injector.getInstance(Key.get(Integer.class, DefaultScoreLimit.class))) ? "selected" : "" %> value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select><br/>
+            Player limit:
+            <select id="player_limit_template" class="player_limit">
+                <% for (int i = injector.getInstance(Key.get(Integer.class, MinPlayerLimit.class)); i <= injector.getInstance(Key.get(Integer.class, MaxPlayerLimit.class)); i++) { %>
+                    <option <%= i == injector.getInstance(Key.get(Integer.class, DefaultPlayerLimit.class)) ? "selected" : "" %> value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>
+            <div class="card_sets">
+                <span class="base_card_sets"></span>
+                <span class="extra_card_sets"></span>
+            </div>
+        </fieldset>
+    </div>
 </div>
 
 <div style="position:absolute; left:-99999px" role="alert" id="aria-notifications"></div>
-
 </body>
 </html>
