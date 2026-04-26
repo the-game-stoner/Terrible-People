@@ -74,7 +74,6 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  #canvas, #bottom { transition: opacity 0.3s ease; }
 </style>
 </head>
 <body id="gamebody">
@@ -107,61 +106,62 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
   </p>
 </div>
 
-<div id="canvas" class="hide">
-  <div id="menubar">
-    <div id="menubar_left">
-      <input type="button" id="refresh_games" class="hide" value="Refresh Games" />
-      <input type="button" id="create_game" class="hide" value="Create Game" />
-      <input type="text" id="filter_games" class="hide" placeholder="Filter games" data-lpignore="true"/>
-      <input type="button" id="leave_game" class="hide" value="Leave Game" />
-      <input type="button" id="start_game" class="hide" value="Start Game" />
-      <input type="button" id="stop_game" class="hide" value="Stop Game" />
-    </div>
-    <div id="menubar_right">
-      Timer: <span id="current_timer">0</span>s
-      <input type="button" id="view_cards" value="View Cards" onclick="window.open('viewcards.jsp', 'viewcards');" />
-      <input type="button" id="logout" value="Log out" />
-    </div>
-  </div>
-  <div id="main">
-    <div id="game_list" class="hide"></div>
-    <div id="main_holder"></div>
-  </div>
-</div>
+<div class="hide">
 
-<div id="bottom" class="hide">
-  <div id="info_area"></div>
-  <div id="tabs">
-    <ul>
-      <li><a href="#tab-preferences" class="tab-button">User Preferences</a></li>
-      <li><a href="#tab-gamelist-filters" class="tab-button">Game List Filters</a></li>
-      <li><a href="#tab-global" class="tab-button" id="button-global">Global Chat</a></li>
-    </ul>
-    <div id="tab-preferences">
-      <input type="button" value="Save" onclick="cah.Preferences.save();" />
-      <input type="button" value="Revert" onclick="cah.Preferences.load();" />
-      <label for="hide_connect_quit">Hide connect/quit events:</label>
-      <input type="checkbox" id="hide_connect_quit" /><br />
-      <label for="ignore_list">Ignore list (one per line):</label><br/>
-      <textarea id="ignore_list" style="width: 200px; height: 100px"></textarea>
+  <div id="canvas">
+    <div id="menubar">
+      <div id="menubar_left">
+        <input type="button" id="refresh_games" class="hide" value="Refresh Games" />
+        <input type="button" id="create_game" class="hide" value="Create Game" />
+        <input type="text" id="filter_games" class="hide" placeholder="Filter games" data-lpignore="true"/>
+        <input type="button" id="leave_game" class="hide" value="Leave Game" />
+        <input type="button" id="start_game" class="hide" value="Start Game" />
+        <input type="button" id="stop_game" class="hide" value="Stop Game" />
+      </div>
+      <div id="menubar_right">
+        Timer: <span id="current_timer">0</span>s
+        <input type="button" id="view_cards" value="View Cards" onclick="window.open('viewcards.jsp', 'viewcards');" />
+        <input type="button" id="logout" value="Log out" />
+      </div>
     </div>
-    <div id="tab-gamelist-filters">
-       <input type="button" value="Save" onclick="cah.Preferences.save();" />
-       <fieldset><legend>Filters</legend>
-       <select id="cardsets_neutral" multiple="multiple" style="width:100%; height:80px;"></select>
-       </fieldset>
+    <div id="main">
+      <div id="game_list" class="hide"></div>
+      <div id="main_holder"></div>
     </div>
-    <div id="tab-global">
-      <div class="log" id="log_global"></div>
-      <div class="chat-input-wrapper">
-        <input type="text" class="chat" id="chat_global" maxlength="200" aria-label="Type here to chat." data-lpignore="true" placeholder="Say something..." />
-        <input type="button" class="chat_submit" id="chat_submit_global" value="Send" />
+  </div>
+
+  <div id="bottom">
+    <div id="info_area"></div>
+    <div id="tabs">
+      <ul>
+        <li><a href="#tab-preferences" class="tab-button">User Preferences</a></li>
+        <li><a href="#tab-gamelist-filters" class="tab-button">Game List Filters</a></li>
+        <li><a href="#tab-global" class="tab-button" id="button-global">Global Chat</a></li>
+      </ul>
+      <div id="tab-preferences">
+        <input type="button" value="Save" onclick="cah.Preferences.save();" />
+        <input type="button" value="Revert" onclick="cah.Preferences.load();" />
+        <label for="hide_connect_quit">Hide connect/quit events:</label>
+        <input type="checkbox" id="hide_connect_quit" /><br />
+        <label for="ignore_list">Ignore list (one per line):</label><br/>
+        <textarea id="ignore_list" style="width: 200px; height: 100px"></textarea>
+      </div>
+      <div id="tab-gamelist-filters">
+         <input type="button" value="Save" onclick="cah.Preferences.save();" />
+         <fieldset><legend>Filters</legend>
+         <select id="cardsets_neutral" multiple="multiple" style="width:100%; height:80px;"></select>
+         </fieldset>
+      </div>
+      <div id="tab-global">
+        <div class="log" id="log_global"></div>
+        <div class="chat-input-wrapper">
+          <input type="text" class="chat" id="chat_global" maxlength="200" aria-label="Type here to chat." data-lpignore="true" placeholder="Say something..." />
+          <input type="button" class="chat_submit" id="chat_submit_global" value="Send" />
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="hide">
   <div id="gamelist_lobby_template" class="gamelist_lobby">
     <div class="gamelist_lobby_left">
       <h3><span class="gamelist_lobby_host"></span>'s Game</h3>
@@ -171,23 +171,17 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
       <input type="button" class="gamelist_lobby_join" value="Join" />
     </div>
   </div>
-</div>
 
-<div class="hide">
   <div id="black_up_template" class="card blackcard">
     <span class="card_text"></span>
     <div class="logo"><div class="logo_text">Terrible People</div></div>
   </div>
-</div>
 
-<div class="hide">
   <div id="white_up_template" class="card whitecard">
     <span class="card_text"></span>
     <div class="logo"><div class="logo_text">Terrible People</div></div>
   </div>
-</div>
 
-<div class="hide">
   <div id="game_template" class="game">
     <div class="game_top">
       <input type="button" class="game_show_options game_menu_bar" value="Options" />
@@ -199,15 +193,10 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
     </div>
     <div class="game_hand"><div class="game_hand_cards"></div></div>
   </div>
-</div>
 
-<div class="hide"><div id="white_down_template" class="card whitecard"></div></div>
-<div class="hide"><div id="black_down_template" class="card blackcard"></div></div>
-<div class="hide">
+  <div id="white_down_template" class="card whitecard"></div>
+  <div id="black_down_template" class="card blackcard"></div>
   <div id="scoreboard_template" class="scoreboard"><div class="game_message">Scoreboard</div></div>
-</div>
-
-<div class="hide">
   <div id="scorecard_template" class="scorecard">
     <span class="scorecard_player"></span>
     <span class="scorecard_points"><span class="scorecard_score">0</span> Awesome Points</span>
