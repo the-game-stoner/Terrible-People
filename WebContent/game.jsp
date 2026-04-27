@@ -45,6 +45,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Terrible People | The-Circle.xyz</title>
+<link rel="icon" type="image/png" href="favicon.png" />
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
