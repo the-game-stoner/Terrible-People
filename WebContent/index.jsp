@@ -167,7 +167,8 @@ Index page - warm and welcoming for The-Circle community.
     Terrible People is hosted by <a href="https://www.the-circle.xyz">The-Circle.xyz</a> • 
     Inspired by Cards Against Humanity • 
     <a href="https://github.com/the-game-stoner/Terrible-People">Source on GitHub</a> • 
-    <a href="license.html">License</a>
+    <a href="license.html">License</a> • 
+    <a href="changelog.jsp">📋 Changelog</a>
   </div>
 </div>
 
