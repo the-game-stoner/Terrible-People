@@ -119,119 +119,242 @@ if (color != null) {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <title>Terrible People - Add Cards</title>
-<style type="text/css">
+<link rel="icon" type="image/png" href="favicon.png" />
+<style>
+  :root {
+    --circle-bg: #070a0f;
+    --circle-panel: rgba(255,255,255,0.06);
+    --circle-panel2: rgba(255,255,255,0.04);
+    --circle-border: rgba(255,255,255,0.12);
+    --circle-text: rgba(255,255,255,0.92);
+    --circle-muted: rgba(255,255,255,0.68);
+    --circle-accent: #09ff03;
+    --circle-accent-soft: rgba(9,255,3,0.14);
+  }
+  
   body {
-    background: #070a0f;
-    color: rgba(255, 255, 255, 0.92);
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    padding: 20px;
+    background: radial-gradient(900px 500px at 15% 10%, rgba(9,255,3,0.12), transparent 62%),
+                linear-gradient(var(--circle-bg), var(--circle-bg));
+    background-attachment: fixed;
+    color: var(--circle-text);
+    font-family: ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  
+  .addcard-container {
     max-width: 800px;
     margin: 0 auto;
+    animation: fadeIn 0.5s ease-out;
   }
-  h1 {
-    font-size: 1.5rem;
-    letter-spacing: -0.02em;
-    margin-top: 30px;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  a {
-    color: #09ff03;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+  
   .back-link {
-    display: inline-block;
-    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 40px;
+    padding: 8px 20px;
+    margin-bottom: 24px;
+    color: var(--circle-text);
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
+  
+  .back-link:hover {
+    border-color: var(--circle-accent);
+    color: var(--circle-accent);
+    transform: translateX(-4px);
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: var(--circle-accent);
+  }
+  
+  h2 {
+    font-size: 22px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: var(--circle-text);
+    border-bottom: 1px solid var(--circle-border);
+    padding-bottom: 8px;
+  }
+  
   form {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 18px;
-    padding: 20px;
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 20px;
+    padding: 24px;
     margin-bottom: 30px;
+    transition: all 0.2s ease;
   }
+  
+  form:hover {
+    border-color: var(--circle-accent);
+  }
+  
+  .form-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  
   label {
     display: inline-block;
-    width: 80px;
-    font-weight: bold;
+    width: 100px;
+    font-weight: 600;
+    color: var(--circle-accent);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
+  
   input[type="text"] {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    flex: 1;
+    min-width: 250px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--circle-border);
     border-radius: 12px;
-    padding: 8px 12px;
-    color: rgba(255, 255, 255, 0.92);
+    padding: 10px 14px;
+    color: var(--circle-text);
     font-size: 14px;
-    width: 500px;
-    margin-bottom: 10px;
+    font-family: monospace;
   }
+  
   input[type="text"]:focus {
     outline: none;
-    border-color: #09ff03;
+    border-color: var(--circle-accent);
+    box-shadow: 0 0 0 3px rgba(9,255,3,0.15);
   }
+  
   input[type="submit"] {
-    background: #09ff03;
+    background: linear-gradient(135deg, var(--circle-accent) 0%, #0dcc00 100%);
     border: none;
     border-radius: 40px;
-    padding: 10px 24px;
+    padding: 10px 28px;
     font-size: 14px;
     font-weight: bold;
-    color: #000;
+    color: #070a0f;
     cursor: pointer;
-    margin-top: 10px;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+    margin-left: 100px;
   }
+  
   input[type="submit"]:hover {
-    background: #0cdd00;
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(9,255,3,0.4);
   }
+  
   .error {
-    color: #ff4444;
+    color: #ff5555;
+    font-size: 14px;
+    padding: 12px 16px;
+    background: rgba(255,68,68,0.1);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 3px solid #ff5555;
   }
+  
   .success {
-    color: #09ff03;
+    color: var(--circle-accent);
+    font-size: 14px;
+    padding: 12px 16px;
+    background: var(--circle-accent-soft);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--circle-accent);
+  }
+  
+  .info-note {
+    font-size: 13px;
+    color: var(--circle-muted);
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: var(--circle-panel2);
+    border-radius: 12px;
+  }
+  
+  .inline-hint {
+    font-size: 11px;
+    color: var(--circle-muted);
+    margin-left: 100px;
+    margin-top: -8px;
+    margin-bottom: 8px;
   }
 </style>
 </head>
 <body>
+<div class="addcard-container">
+  <a href="game.jsp" class="back-link">← Back to Game</a>
 
-<a href="game.jsp" class="back-link">&larr; Back to Game</a>
+  <h1>🃟 Terrible People - Add Cards</h1>
 
-<h1>Terrible People - Add Cards</h1>
+  <div class="info-note">
+    💡 Convention is to use four underscores <strong>____</strong> for the blanks on black cards.
+  </div>
 
-<p>Convention is to use four underscores for the blanks on black cards.</p>
+  <% if (!error.isEmpty()) { %>
+    <div class="error">❌ <%= error %></div>
+  <% } %>
+  <% if (!status.isEmpty()) { %>
+    <div class="success">✅ <%= status %></div>
+  <% } %>
 
-<div class="error"><%= error %></div>
-<div class="success"><%= status %></div>
+  <h2>🃟 Black Card</h2>
+  <form method="post" action="addcard.jsp">
+    <input type="hidden" name="color" value="black" />
+    <div class="form-row">
+      <label for="black_text">Card Text</label>
+      <input type="text" id="black_text" name="text" size="150" placeholder="e.g., ____ is the new black." />
+    </div>
+    <div class="form-row">
+      <label for="pick">Pick</label>
+      <input type="text" id="pick" name="pick" size="3" value="1" />
+    </div>
+    <div class="inline-hint">Number of cards players must pick</div>
+    <div class="form-row">
+      <label for="draw">Draw</label>
+      <input type="text" id="draw" name="draw" size="3" value="0" />
+    </div>
+    <div class="inline-hint">Number of cards drawn (for "draw 2, pick 1" style)</div>
+    <div class="form-row">
+      <label for="watermark_b">Watermark</label>
+      <input type="text" id="watermark_b" name="watermark" size="3" maxlength="5" value="<%= watermark %>" placeholder="US, UK, etc." />
+    </div>
+    <input type="submit" value="+ Add Black Card" />
+  </form>
 
-<h2>Black Card</h2>
-<form method="post" action="addcard.jsp">
-<input type="hidden" name="color" value="black" />
-<label for="black_text">Card Text</label>
-<input type="text" id="black_text" name="text" size="150" />
-<br/>
-<label for="pick">Pick</label>
-<input type="text" id="pick" name="pick" size="3" value="1" />
-<br/>
-<label for="draw">Draw</label>
-<input type="text" id="draw" name="draw" size="3" value="0" />
-<br/>
-<label for="watermark_b">Watermark</label>
-<input type="text" id="watermark_b" name="watermark" size="3" maxlength="5" value="<%= watermark %>" />
-<br/>
-<input type="submit" value="Add Black Card" />
-</form>
-
-<h2>White Card</h2>
-<form method="post" action="addcard.jsp">
-<input type="hidden" name="color" value="white" />
-<label for="white_text">Card Text</label>
-<input type="text" id="white_text" name="text" size="150" />
-<br/>
-<label for="watermark_w">Watermark</label>
-<input type="text" id="watermark_w" name="watermark" size="3" maxlength="5" value="<%= watermark %>" />
-<br/>
-<input type="submit" value="Add White Card" />
-</form>
+  <h2>⬜ White Card</h2>
+  <form method="post" action="addcard.jsp">
+    <input type="hidden" name="color" value="white" />
+    <div class="form-row">
+      <label for="white_text">Card Text</label>
+      <input type="text" id="white_text" name="text" size="150" placeholder="e.g., A really terrible answer." />
+    </div>
+    <div class="form-row">
+      <label for="watermark_w">Watermark</label>
+      <input type="text" id="watermark_w" name="watermark" size="3" maxlength="5" value="<%= watermark %>" placeholder="US, UK, etc." />
+    </div>
+    <input type="submit" value="+ Add White Card" />
+  </form>
+</div>
 
 <script type="text/javascript">
 var field = '<%= field %>';
