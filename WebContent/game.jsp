@@ -21,12 +21,6 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
 WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --%>
-<%--
-The main game page. This is almost entirely static HTML, other than ensuring that a session is
-created for the user now.
-
-@author Andy Janata (ajanata@socialgamer.net)
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.google.inject.Injector" %>
 <%@ page import="com.google.inject.Key" %>
@@ -38,7 +32,6 @@ created for the user now.
 <%@ page import="net.socialgamer.cah.CahModule" %>
 <%@ page import="net.socialgamer.cah.CahModule.*" %>
 <%
-// Ensure a session exists for the user.
 @SuppressWarnings("unused")
 HttpSession hSession = request.getSession(true);
 RequestWrapper wrapper = new RequestWrapper(request);
@@ -75,99 +68,152 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <script type="text/javascript" src="js/cah.app.js"></script>
 <link rel="stylesheet" type="text/css" href="cah.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="jquery-ui.min.css" media="screen" />
+
+<style>
+  /* Welcome screen improvements - keeps original layout, just better looking */
+  #welcome {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  #welcome h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  #welcome h3 {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 24px;
+  }
+  
+  #welcome p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  #nickbox {
+    background: rgba(255,255,255,0.04);
+    border-radius: 20px;
+    padding: 28px;
+    margin: 24px 0;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  
+  #nickbox label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #09ff03;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+  
+  #nickbox label:first-of-type {
+    margin-top: 0;
+  }
+  
+  #nickbox input[type="text"],
+  #nickbox input[type="password"] {
+    width: 100%;
+    max-width: 350px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 16px;
+    color: white;
+    box-sizing: border-box;
+  }
+  
+  #nickbox input:focus {
+    outline: none;
+    border-color: #09ff03;
+    box-shadow: 0 0 0 3px rgba(9,255,3,0.15);
+  }
+  
+  #nickbox a {
+    color: #09ff03;
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-block;
+    margin-left: 12px;
+  }
+  
+  #nickbox a:hover {
+    text-decoration: underline;
+  }
+  
+  #nicknameconfirm {
+    background: linear-gradient(135deg, #09ff03 0%, #0dcc00 100%);
+    border: none;
+    border-radius: 40px;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #070a0f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 20px;
+  }
+  
+  #nicknameconfirm:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(9,255,3,0.4);
+  }
+  
+  .error {
+    color: #ff5555;
+    font-size: 14px;
+    display: block;
+    margin-top: 12px;
+  }
+  
+  .privacy-short {
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  
+  .footer-short {
+    font-size: 11px;
+    margin-top: 24px;
+    color: rgba(255,255,255,0.5);
+  }
+</style>
+
 </head>
 <body id="gamebody">
 
 <div id="welcome">
-  <h1 style="font-size: 42px; margin-bottom: 16px;">
-    <span style="color: #09ff03;">Terrible People</span>
-  </h1>
-  <h3 style="font-size: 22px; font-weight: normal; margin-bottom: 24px;">
-    A <a href="http://cardsagainsthumanity.com/" style="color: #09ff03;">Cards Against Humanity</a> game room hosted by <a href="https://www.the-circle.xyz" style="color: #09ff03;">The-Circle.xyz</a>
-  </h3>
+  <h1 tabindex="0">Terrible People</h1>
+  <h3>A <a href="http://cardsagainsthumanity.com/">Cards Against Humanity</a> game room hosted by <a href="https://www.the-circle.xyz">The-Circle.xyz</a>.</h3>
   
-  <div style="font-size: 18px; line-height: 1.6; margin-bottom: 24px;">
-    <p>Your IP is logged for security only. Gameplay stats are anonymous.</p>
-  </div>
+  <p>Your IP is logged for security only — gameplay stats are anonymous.</p>
 
-  <div id="nickbox" style="
-    background: rgba(255,255,255,0.04);
-    border-radius: 20px;
-    padding: 24px;
-    margin: 20px 0;
-    border: 1px solid rgba(255,255,255,0.12);
-  ">
-    <div style="margin-bottom: 16px;">
-      <label for="nickname" style="
-        display: block;
-        font-size: 14px;
-        font-weight: bold;
-        color: #09ff03;
-        margin-bottom: 8px;
-      ">🎭 Nickname:</label>
-      <input type="text" id="nickname" value="" maxlength="30" role="textbox"
-          aria-label="Enter your nickname." data-lpignore="true" style="
-          width: 100%;
-          max-width: 300px;
-          background: rgba(0,0,0,0.5);
-          border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 12px;
-          padding: 12px 16px;
-          font-size: 16px;
-          color: white;
-      "/>
-    </div>
+  <div id="nickbox">
+    <label for="nickname">🎭 NICKNAME</label>
+    <input type="text" id="nickname" value="" maxlength="30" role="textbox"
+        aria-label="Enter your nickname." data-lpignore="true" />
     
-    <div style="margin-bottom: 20px;">
-      <label for="idcode" style="
-        display: block;
-        font-size: 14px;
-        font-weight: bold;
-        color: #09ff03;
-        margin-bottom: 8px;
-      ">🔑 Optional identification code:</label>
-      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-        <input type="password" id="idcode" value="" maxlength="100" disabled="disabled"
-            aria-label="Optionally enter an identification code." style="
-            width: 100%;
-            max-width: 300px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 12px;
-            padding: 12px 16px;
-            font-size: 16px;
-            color: white;
-        "/>
-        <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes" 
-           style="color: #09ff03; text-decoration: none; font-size: 13px;">
-          What's this? ⓘ
-        </a>
-      </div>
+    <label for="idcode">🔑 OPTIONAL ID CODE</label>
+    <div style="display: flex; align-items: center; flex-wrap: wrap;">
+      <input type="password" id="idcode" value="" maxlength="100" disabled="disabled"
+          aria-label="Optionally enter an identification code." style="flex: 1; min-width: 200px;" />
+      <a href="https://github.com/ajanata/PretendYoureXyzzy/wiki/Identification-Codes">What's this? ⓘ</a>
     </div>
     
     <div>
-      <input type="button" id="nicknameconfirm" value="▶ ENTER GAME" style="
-          background: linear-gradient(135deg, #09ff03 0%, #0dcc00 100%);
-          border: none;
-          border-radius: 40px;
-          padding: 12px 28px;
-          font-size: 16px;
-          font-weight: bold;
-          color: #070a0f;
-          cursor: pointer;
-          transition: all 0.2s ease;
-      "/>
+      <input type="button" id="nicknameconfirm" value="▶ ENTER GAME" />
     </div>
     
-    <span id="nickbox_error" class="error" style="display: block; margin-top: 14px; font-size: 14px; color: #ff5555;"></span>
+    <span id="nickbox_error" class="error"></span>
   </div>
 
-  <p style="font-size: 14px;">
-    <a href="privacy.html" style="color: #09ff03;"><strong>Privacy Info →</strong></a> How your data is handled.
-  </p>
-  <p style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 16px;">
+  <p class="privacy-short"><a href="privacy.html"><strong>Privacy Info →</strong></a> How your data is handled.</p>
+  <p class="footer-short">
     Based on Cards Against Humanity. Not endorsed by them. 
-    <a href="https://github.com/the-game-stoner/Terrible-People" style="color: #09ff03;">Source code</a>
+    <a href="https://github.com/the-game-stoner/Terrible-People">Source code</a>
   </p>
 </div>
 
