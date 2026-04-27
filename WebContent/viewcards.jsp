@@ -128,9 +128,8 @@ try {
     whiteCardsData.put(whiteCard.getId(), whiteCardData);
   }
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -144,6 +143,195 @@ try {
 <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 <link rel="stylesheet" type="text/css" href="cah.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="jquery-ui.min.css" media="screen" />
+<style>
+  :root {
+    --circle-bg: #070a0f;
+    --circle-panel: rgba(255,255,255,0.06);
+    --circle-border: rgba(255,255,255,0.12);
+    --circle-text: rgba(255,255,255,0.92);
+    --circle-accent: #09ff03;
+    --circle-accent-soft: rgba(9,255,3,0.14);
+  }
+  
+  body {
+    background: radial-gradient(900px 500px at 15% 10%, rgba(9, 255, 3, 0.12), transparent 62%),
+                linear-gradient(var(--circle-bg), var(--circle-bg));
+    background-attachment: fixed;
+    color: var(--circle-text);
+    font-family: ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 40px;
+    padding: 8px 20px;
+    margin-bottom: 24px;
+    color: var(--circle-text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .back-link:hover {
+    border-color: var(--circle-accent);
+    color: var(--circle-accent);
+    transform: translateX(-4px);
+  }
+  
+  .filter-section {
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .filter-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--circle-accent);
+    margin-bottom: 8px;
+  }
+  
+  .filter-group select {
+    width: 100%;
+    height: 180px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--circle-border);
+    border-radius: 12px;
+    color: var(--circle-text);
+    padding: 8px;
+  }
+  
+  .filter-group select option {
+    padding: 4px 8px;
+  }
+  
+  .filter-group input {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--circle-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 16px;
+    color: var(--circle-text);
+    box-sizing: border-box;
+  }
+  
+  .filter-group input:focus {
+    outline: none;
+    border-color: var(--circle-accent);
+    box-shadow: 0 0 0 3px rgba(9,255,3,0.15);
+  }
+  
+  .card-table-wrapper {
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 20px;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th {
+    text-align: left;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.3);
+    color: var(--circle-accent);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--circle-border);
+    cursor: pointer;
+  }
+  
+  th:hover {
+    background: var(--circle-accent-soft);
+  }
+  
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--circle-border);
+    vertical-align: top;
+  }
+  
+  tr:hover td {
+    background: rgba(255,255,255,0.03);
+  }
+  
+  .card-type {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .card-type-black {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+  
+  .card-type-white {
+    background: var(--circle-accent-soft);
+    color: var(--circle-accent);
+  }
+  
+  .watermark-badge {
+    background: rgba(255,255,255,0.06);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    display: inline-block;
+  }
+  
+  .card-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Card set selector styling for multi-select */
+  select[multiple] option:checked {
+    background: var(--circle-accent-soft);
+    color: var(--circle-accent);
+  }
+  
+  .stats {
+    margin-top: 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+  }
+</style>
 <script type="text/javascript">
 var data = <%= JSONValue.toJSONString(data) %>;
 
@@ -158,25 +346,54 @@ $(document).ready(function() {
   var tableElem = $('#cards');
   for (var id in data.blackCards) {
     var card = data.blackCards[id];
-    tableElem.append('<tr id="b' + id + '"><td>Black</td><td>' + card.text + '</td><td>'
-        + card.watermark + '</td><td>' + card.draw + '</td><td>' + card.pick + '</td></tr>');
+    tableElem.append('<tr id="b' + id + '">\
+        <td><span class="card-type card-type-black">Black</span></td>\
+        <td class="card-text">' + escapeHtml(card.text) + '</td>\
+        <td><span class="watermark-badge">' + (card.watermark || '') + '</span></td>\
+        <td>' + card.draw + '</td>\
+        <td>' + card.pick + '</td>\
+      </tr>');
   }
   for (var id in data.whiteCards) {
     var card = data.whiteCards[id];
-    tableElem.append('<tr id="w' + id + '"><td>White</td><td>' + card.text + '</td><td>'
-        + card.watermark + '</td><td></td><td></td></tr>');
+    tableElem.append('<tr id="w' + id + '">\
+        <td><span class="card-type card-type-white">White</span></td>\
+        <td class="card-text">' + escapeHtml(card.text) + '</td>\
+        <td><span class="watermark-badge">' + (card.watermark || '') + '</span></td>\
+        <td></td>\
+        <td></td>\
+      </tr>');
   }
 
   $('#search').keyup(filter);
   $('#cardSets').change(filter);
   $('#cardTable').tablesorter();
   $('#cardTextColumn').click();
+  
+  updateStats();
 });
+
+function escapeHtml(text) {
+  if (!text) return '';
+  return text.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
+}
+
+function updateStats() {
+  var visible = $('#cards tr:visible').length;
+  var total = $('#cards tr').length;
+  $('#stats').text('Showing ' + visible + ' of ' + total + ' cards');
+}
 
 function filter() {
   $('#cards tr').hide();
   applyFilter(data.blackCards, 'b');
   applyFilter(data.whiteCards, 'w');
+  updateStats();
 }
 
 function applyFilter(cardArray, prefix) {
@@ -197,67 +414,40 @@ function applyFilter(cardArray, prefix) {
   }
 }
 </script>
-<style type="text/css">
-.sorting {
-  cursor: pointer;
-}
-table td {
-  padding: 5px;
-}
-
-body {
-  background: radial-gradient(900px 500px at 15% 10%, rgba(9, 255, 3, 0.16), transparent 62%),
-              linear-gradient(var(--circle-bg), var(--circle-bg));
-  background-attachment: fixed;
-  color: var(--circle-text);
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  margin: 0;
-  padding: 20px;
-}
-
-a {
-  color: var(--circle-accent);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-</style>
 </head>
 <body>
-
-<div style="margin-bottom: 20px;">
-  <a href="game.jsp">&larr; Back to Game</a>
+<div class="container">
+  <a href="game.jsp" class="back-link">← Back to Game</a>
+  
+  <div class="filter-section">
+    <div class="filter-group">
+      <label>🎴 Card Sets (Ctrl/Cmd + click for multiple)</label>
+      <select id="cardSets" multiple="multiple" size="8">
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>🔍 Search Cards</label>
+      <input type="text" id="search" placeholder="Search card text... (regex supported)" />
+    </div>
+  </div>
+  
+  <div class="card-table-wrapper">
+    <table id="cardTable">
+      <thead>
+        <tr>
+          <th style="width: 80px;">Type</th>
+          <th id="cardTextColumn">Card Text</th>
+          <th style="width: 100px;">Source</th>
+          <th style="width: 60px;">Draw</th>
+          <th style="width: 60px;">Pick</th>
+        </tr>
+      </thead>
+      <tbody id="cards">
+      </tbody>
+    </table>
+  </div>
+  <div id="stats" class="stats"></div>
 </div>
-
-<div style="float: left;">
-  Show only cards from card sets (hold ctrl or cmd to select multiple):
-  <br/>
-  <select id="cardSets" multiple="multiple" style="height: 150px; width: 450px;">
-  </select>
-</div>
-<div>
-  <label for="search" style="padding-left: 10px;"
-      title="Search for text in cards. You can use regular expressions.">
-    Search card text:
-  </label>
-  <input type="text" id="search" style="width: 400px;" />
-</div>
-<div style="clear:both"></div>
-<table id="cardTable" style="margin-top: 20px; width: 100%; border-collapse: collapse;">
-  <thead>
-    <tr>
-      <th class="sorting" style="width: 75px;">Type</th>
-      <th class="sorting" style="width: 100%" id="cardTextColumn">Text</th>
-      <th class="sorting" style="width: 100px;">Source</th>
-      <th class="sorting" style="width: 75px;">Draw</th>
-      <th class="sorting" style="width: 75px;">Pick</th>
-    </tr>
-  </thead>
-  <tbody id="cards">
-  </tbody>
-</table>
 </body>
 </html>
 <%
