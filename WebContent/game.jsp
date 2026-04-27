@@ -187,7 +187,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 
 <div id="welcome">
   <h1 tabindex="0">Terrible People</h1>
-  <h3>A <a href="http://cardsagainsthumanity.com/">Cards Against Humanity</a> game room hosted by <a href="https://www.the-circle.xyz">The-Circle.xyz</a>.</h3>
+  <h3>A <a href="http://cardsagainsthumanity.com/">Cards Against Humanity</a> server hosted by <a href="https://www.the-circle.xyz">The-Circle.xyz</a>.</h3>
   
   <p>Your IP is logged for security only — gameplay stats are anonymous.</p>
 
