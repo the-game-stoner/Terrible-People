@@ -82,7 +82,7 @@ h2,h3,h4 {
 #nickbox {
   border: 1px solid var(--circle-border);
   background: var(--circle-panel2);
-  display: inline;
+  display: block;
   padding: 5px;
   border-radius: 12px;
 }
