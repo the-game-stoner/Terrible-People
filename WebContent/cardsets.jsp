@@ -175,8 +175,293 @@ try {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>PYX - Edit Card Sets</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<title>Terrible People - Edit Card Sets</title>
+<link rel="icon" type="image/png" href="favicon.png" />
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<style>
+  :root {
+    --circle-bg: #070a0f;
+    --circle-panel: rgba(255,255,255,0.06);
+    --circle-panel2: rgba(255,255,255,0.04);
+    --circle-border: rgba(255,255,255,0.12);
+    --circle-text: rgba(255,255,255,0.92);
+    --circle-muted: rgba(255,255,255,0.68);
+    --circle-accent: #09ff03;
+    --circle-accent-soft: rgba(9,255,3,0.14);
+  }
+  
+  body {
+    background: radial-gradient(900px 500px at 15% 10%, rgba(9,255,3,0.12), transparent 62%),
+                linear-gradient(var(--circle-bg), var(--circle-bg));
+    background-attachment: fixed;
+    color: var(--circle-text);
+    font-family: ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  
+  .cardsets-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 40px;
+    padding: 8px 20px;
+    margin-bottom: 24px;
+    color: var(--circle-text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .back-link:hover {
+    border-color: var(--circle-accent);
+    color: var(--circle-accent);
+    transform: translateX(-4px);
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: var(--circle-accent);
+  }
+  
+  h2 {
+    font-size: 22px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: var(--circle-text);
+    border-bottom: 1px solid var(--circle-border);
+    padding-bottom: 8px;
+  }
+  
+  h3 {
+    color: #ff5555;
+    font-size: 14px;
+    background: rgba(255,68,68,0.1);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border-left: 3px solid #ff5555;
+    margin-bottom: 20px;
+  }
+  
+  .table-wrapper {
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 20px;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th {
+    text-align: left;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.3);
+    color: var(--circle-accent);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--circle-border);
+  }
+  
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--circle-border);
+  }
+  
+  tr:hover td {
+    background: var(--circle-accent-soft);
+  }
+  
+  .action-link {
+    color: var(--circle-accent);
+    text-decoration: none;
+    margin-right: 12px;
+    font-size: 13px;
+  }
+  
+  .action-link:hover {
+    text-decoration: underline;
+  }
+  
+  .create-btn {
+    display: inline-block;
+    background: var(--circle-accent);
+    color: #070a0f;
+    padding: 8px 20px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease;
+  }
+  
+  .create-btn:hover {
+    background: #0cdd00;
+    transform: scale(1.02);
+  }
+  
+  form {
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 20px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+  
+  .form-row {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  label {
+    width: 120px;
+    font-weight: 600;
+    color: var(--circle-accent);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  input[type="text"], input[type="password"] {
+    flex: 1;
+    min-width: 250px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--circle-border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: var(--circle-text);
+    font-size: 14px;
+  }
+  
+  input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: var(--circle-accent);
+    box-shadow: 0 0 0 3px rgba(9,255,3,0.15);
+  }
+  
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--circle-accent);
+  }
+  
+  input[type="submit"] {
+    background: linear-gradient(135deg, var(--circle-accent) 0%, #0dcc00 100%);
+    border: none;
+    border-radius: 40px;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #070a0f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+  }
+  
+  input[type="submit"]:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(9,255,3,0.4);
+  }
+  
+  .dual-select {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  
+  .dual-select-column {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .dual-select-column select {
+    width: 100%;
+    height: 300px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--circle-border);
+    border-radius: 12px;
+    color: var(--circle-text);
+    padding: 8px;
+  }
+  
+  .dual-select-column select option {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--circle-border);
+  }
+  
+  .dual-select-column select option:checked {
+    background: var(--circle-accent-soft);
+    color: var(--circle-accent);
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 10px 0;
+  }
+  
+  .btn-secondary {
+    background: var(--circle-panel);
+    border: 1px solid var(--circle-border);
+    border-radius: 40px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--circle-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-secondary:hover {
+    border-color: var(--circle-accent);
+    color: var(--circle-accent);
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid var(--circle-border);
+    margin: 20px 0;
+  }
+  
+  .inline-hint {
+    font-size: 11px;
+    color: var(--circle-muted);
+    margin-left: 120px;
+    margin-top: -8px;
+    margin-bottom: 8px;
+  }
+</style>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#addBlackCards').click(function() {
@@ -228,161 +513,190 @@ try {
     });
   }
 </script>
-<style>
-select {
-  height: 300px;
-}
-</style>
 </head>
 <body>
-<%
-  for (String message : messages) {
-%>
-  <h3><%=message%></h3>
-<%
-  }
-%>
-<h2>Existing card sets</h2>
-<table style="1px solid black">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Delete</th>
-      <th>Edit</th>
-      <th>Weight</th>
-      <th>Blacks</th>
-      <th>Whites</th>
-      <th>Active</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%
-      for (PyxCardSet cardSet : cardSets) {
-    %>
-      <tr>
-        <td><%=cardSet.getName()%></td>
-        <td><a href="?delete=<%=cardSet.getId()%>" onclick="return confirm('Are you sure?')">Delete</a></td>
-        <td><a href="?edit=<%=cardSet.getId()%>">Edit</a></td>
-        <td><%=cardSet.getWeight()%></td>
-        <td><%=cardSet.getBlackCards().size()%></td>
-        <td><%=cardSet.getWhiteCards().size()%></td>
-        <td><%=cardSet.isActive()%></td>
-      </tr>
-    <%
-      }
-    %>
-  </tbody>
-</table>
-<a href="cardsets.jsp">Create New</a>
-<form action="cardsets.jsp" method="post" id="editForm">
-  <input type="hidden" name="action" value="edit" />
-  <input type="hidden" name="cardSetId"
-      value="<%=editCardSet != null ? editCardSet.getId() : -1%>" />
-  <h2>
-    <%
-      if (editCardSet != null) {
-    %>
-      Editing <span style="text-decoration:italic"><%=editCardSet.getName()%></span>
-    <%
-      } else {
-    %>
-      Creating new card set
-    <%
-      }
-    %>
-  </h2>
-  <label for="cardSetName">Name:</label>
-  <input type="text" name="cardSetName" id="cardSetName" size="50"
-      value="<%=editCardSet != null ? StringEscapeUtils.escapeXml11(editCardSet.getName()) : ""%>" />
-  <br/>
-  <label for="cardSetDescription">Description:</label>
-  <input type="text" name="cardSetDescription" id="cardSetDescription" size="50"
-      value="<%=editCardSet != null ? StringEscapeUtils.escapeXml11(editCardSet.getDescription()) : ""%>" />
-  <br/>
-  <label for="cardSetWeight">Weight:</label>
-  <input type="text" name="cardSetWeight" id="cardSetWeight" size="4"
-      value="<%=editCardSet != null ? editCardSet.getWeight() : "1000"%>" />
-  <br/>
-  <label for="active">Active</label>
-  <input type="checkbox" name="active" id="active"
-      <%=editCardSet != null && editCardSet.isActive() ? "checked='checked'" : ""%> />
-  <br/>
-  <label for="baseDeck" title="This deck is sufficient for playing the game.">Base Deck</label>
-  <input type="checkbox" name="baseDeck" id="baseDeck"
-      <%=editCardSet != null && editCardSet.isBaseDeck() ? "checked='checked'" : ""%> />
-  <br/>
-  Available Black Cards:
-  <br/>
-  <select id="allBlackCards" multiple="multiple" style="height:300px">
-    <%
-      for (PyxBlackCard blackCard : blackCards) {
-    %>
-      <option value="<%=blackCard.getId()%>">
-        <%=StringEscapeUtils.escapeXml11(blackCard.toString())%>
-      </option>
-    <%
-      }
-    %>
-  </select>
-  <br/>
-  <input type="button" id="addBlackCards" value="Add Black Cards" />
-  <input type="button" id="removeBlackCards" value="Remove Black Cards" />
-  <br/>
-  Black Cards in Card Set:
-  <br/>
-  <select id="selectedBlackCards" name="selectedBlackCards" multiple="multiple">
-    <%
-      if (editCardSet != null) {
-    %>
+<div class="cardsets-container">
+  <a href="admin.jsp" class="back-link">← Back to Admin</a>
+
+  <h1>🃟 Card Sets Management</h1>
+
+  <%
+    for (String message : messages) {
+  %>
+    <h3>⚠️ <%= message %></h3>
+  <%
+    }
+  %>
+
+  <h2>📦 Existing Card Sets</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Delete</th>
+          <th>Edit</th>
+          <th>Weight</th>
+          <th>Blacks</th>
+          <th>Whites</th>
+          <th>Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%
+          for (PyxCardSet cardSet : cardSets) {
+        %>
+          <tr>
+            <td><%=cardSet.getName()%></td>
+            <td><a href="?delete=<%=cardSet.getId()%>" class="action-link" onclick="return confirm('Are you sure?')">🗑️ Delete</a></td>
+            <td><a href="?edit=<%=cardSet.getId()%>" class="action-link">✏️ Edit</a></td>
+            <td><%=cardSet.getWeight()%></td>
+            <td><%=cardSet.getBlackCards().size()%></td>
+            <td><%=cardSet.getWhiteCards().size()%></td>
+            <td><%=cardSet.isActive() ? "✅" : "❌"%></td>
+          </tr>
+        <%
+          }
+        %>
+      </tbody>
+    </table>
+  </div>
+
+  <a href="cardsets.jsp" class="create-btn">+ Create New Card Set</a>
+
+  <form action="cardsets.jsp" method="post" id="editForm">
+    <input type="hidden" name="action" value="edit" />
+    <input type="hidden" name="cardSetId"
+        value="<%=editCardSet != null ? editCardSet.getId() : -1%>" />
+    
+    <h2>
       <%
-        for (PyxBlackCard blackCard : editCardSet.getBlackCards()) {
+        if (editCardSet != null) {
       %>
-        <option value="<%=blackCard.getId()%>" id="bc_<%=blackCard.getId()%>">
-          <%=StringEscapeUtils.escapeXml11(blackCard.toString())%>
-        </option>
+        ✏️ Editing: <span style="color: var(--circle-accent);"><%=editCardSet.getName()%></span>
+      <%
+        } else {
+      %>
+        ➕ Create New Card Set
       <%
         }
       %>
-    <%
-      }
-    %>
-  </select>
-  <br/>
-  Available White Cards:
-  <br/>
-  <select id="allWhiteCards" multiple="multiple" style="height:300px">
-    <%
-      for (PyxWhiteCard whiteCard : whiteCards) {
-    %>
-      <option value="<%=whiteCard.getId()%>">
-        <%=StringEscapeUtils.escapeXml11(whiteCard.toString())%>
-      </option>
-    <%
-      }
-    %>
-  </select>
-  <br/>
-  <input type="button" id="addWhiteCards" value="Add White Cards" />
-  <input type="button" id="removeWhiteCards" value="Remove White Cards" />
-  <br/>
-  White Cards in Card Set:
-  <br/>
-  <select id="selectedWhiteCards" name="selectedWhiteCards" multiple="multiple">
-    <%
-      if (editCardSet != null) {
-    %>
-      <%
-        for (PyxWhiteCard whiteCard : editCardSet.getWhiteCards()) {
-      %>
-        <option value="<%= whiteCard.getId() %>" id="wc_<%= whiteCard.getId() %>">
-          <%= StringEscapeUtils.escapeXml11(whiteCard.toString()) %>
-        </option>
-      <% } %>
-    <% } %>
-  </select>
-  <br/>
-  <input type="submit" />
-</form>
+    </h2>
+
+    <div class="form-row">
+      <label for="cardSetName">Name:</label>
+      <input type="text" name="cardSetName" id="cardSetName" size="50"
+          value="<%=editCardSet != null ? StringEscapeUtils.escapeXml11(editCardSet.getName()) : ""%>" />
+    </div>
+
+    <div class="form-row">
+      <label for="cardSetDescription">Description:</label>
+      <input type="text" name="cardSetDescription" id="cardSetDescription" size="50"
+          value="<%=editCardSet != null ? StringEscapeUtils.escapeXml11(editCardSet.getDescription()) : ""%>" />
+    </div>
+
+    <div class="form-row">
+      <label for="cardSetWeight">Weight:</label>
+      <input type="text" name="cardSetWeight" id="cardSetWeight" size="4"
+          value="<%=editCardSet != null ? editCardSet.getWeight() : "1000"%>" />
+    </div>
+    <div class="inline-hint">Lower weight = appears higher in list (1-9999)</div>
+
+    <div class="form-row">
+      <label for="active">Active</label>
+      <input type="checkbox" name="active" id="active"
+          <%=editCardSet != null && editCardSet.isActive() ? "checked='checked'" : ""%> />
+    </div>
+
+    <div class="form-row">
+      <label for="baseDeck" title="This deck is sufficient for playing the game.">Base Deck</label>
+      <input type="checkbox" name="baseDeck" id="baseDeck"
+          <%=editCardSet != null && editCardSet.isBaseDeck() ? "checked='checked'" : ""%> />
+    </div>
+
+    <hr />
+
+    <div class="dual-select">
+      <div class="dual-select-column">
+        <strong>📚 Available Black Cards</strong>
+        <select id="allBlackCards" multiple="multiple">
+          <%
+            for (PyxBlackCard blackCard : blackCards) {
+          %>
+            <option value="<%=blackCard.getId()%>">
+              <%=StringEscapeUtils.escapeXml11(blackCard.toString())%>
+            </option>
+          <%
+            }
+          %>
+        </select>
+        <div class="button-group">
+          <input type="button" id="addBlackCards" class="btn-secondary" value="→ Add Selected →" />
+          <input type="button" id="removeBlackCards" class="btn-secondary" value="← Remove Selected ←" />
+        </div>
+      </div>
+
+      <div class="dual-select-column">
+        <strong>🃟 Black Cards in Set</strong>
+        <select id="selectedBlackCards" name="selectedBlackCards" multiple="multiple">
+          <%
+            if (editCardSet != null) {
+              for (PyxBlackCard blackCard : editCardSet.getBlackCards()) {
+          %>
+            <option value="<%=blackCard.getId()%>" id="bc_<%=blackCard.getId()%>">
+              <%=StringEscapeUtils.escapeXml11(blackCard.toString())%>
+            </option>
+          <%
+              }
+            }
+          %>
+        </select>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="dual-select">
+      <div class="dual-select-column">
+        <strong>📚 Available White Cards</strong>
+        <select id="allWhiteCards" multiple="multiple">
+          <%
+            for (PyxWhiteCard whiteCard : whiteCards) {
+          %>
+            <option value="<%=whiteCard.getId()%>">
+              <%=StringEscapeUtils.escapeXml11(whiteCard.toString())%>
+            </option>
+          <%
+            }
+          %>
+        </select>
+        <div class="button-group">
+          <input type="button" id="addWhiteCards" class="btn-secondary" value="→ Add Selected →" />
+          <input type="button" id="removeWhiteCards" class="btn-secondary" value="← Remove Selected ←" />
+        </div>
+      </div>
+
+      <div class="dual-select-column">
+        <strong>⬜ White Cards in Set</strong>
+        <select id="selectedWhiteCards" name="selectedWhiteCards" multiple="multiple">
+          <%
+            if (editCardSet != null) {
+              for (PyxWhiteCard whiteCard : editCardSet.getWhiteCards()) {
+          %>
+            <option value="<%= whiteCard.getId() %>" id="wc_<%= whiteCard.getId() %>">
+              <%= StringEscapeUtils.escapeXml11(whiteCard.toString()) %>
+            </option>
+          <% 
+              }
+            }
+          %>
+        </select>
+      </div>
+    </div>
+
+    <input type="submit" value="💾 Save Card Set" />
+  </form>
+</div>
 </body>
 </html>
 <%
