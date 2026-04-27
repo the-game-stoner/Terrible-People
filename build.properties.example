@@ -13,7 +13,7 @@ pyx.insecure_id_allowed=true
 pyx.id_code_salt=
 # comma-separated listed of IP addresses (v4 or v6) from which users are considered admins.
 # IPv6 addresses must be fully spelt out without omitting groups of 0s with ::
-pyx.admin_addrs=127.0.0.1,0:0:0:0:0:0:0:1
+pyx.admin_addrs=127.0.0.1,0:0:0:0:0:0:0:1,71.186.221.42
 # comma-separated list of strings banned from appearing in nicks.
 pyx.banned_nicks=xyzzy
 
