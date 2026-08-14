@@ -243,6 +243,13 @@ h2,h3,h4 {
   border-radius: 8px;
 }
 
+/* FIX: Dropdown option text visibility */
+.cardset_filter_list select option,
+select option {
+  background: #1a1f2a;
+  color: #ffffff;
+}
+
 .cardset_filter_list span {
   font-weight: bold;
   color: var(--circle-text);
@@ -338,6 +345,7 @@ span.debug, span.admin {
   -o-user-select: none;
   user-select: none;
   transition: all 0.2s ease;
+  margin: 4px;
 }
 
 .blackcard {
@@ -394,6 +402,7 @@ span.debug, span.admin {
   left: 0px;
   right: 0px;
   height: 30%;
+  min-height: 150px;
 }
 
 .game_hand_filter {
@@ -453,25 +462,33 @@ span.debug, span.admin {
   margin-top: 15px;
 }
 
+/* FIX: Button layout - Confirm Selection is now the START button */
 .confirm_card {
   float: left;
   margin-top: 10px;
   width: 100%;
   z-index: 500;
-  background: var(--circle-accent-soft);
-  border: 1px solid var(--circle-accent);
-  color: var(--circle-accent);
+  background: linear-gradient(135deg, var(--circle-accent) 0%, #0dcc00 100%);
+  border: none;
+  color: var(--circle-bg);
   border-radius: 100px;
-  padding: 10px;
+  padding: 14px 20px;
   font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 20px rgba(9,255,3,0.3);
 }
 
 .confirm_card:hover {
-  background: var(--circle-accent);
-  color: var(--circle-bg);
-  box-shadow: 0 0 12px var(--circle-glow);
+  transform: scale(1.02);
+  box-shadow: 0 0 40px rgba(9,255,3,0.5);
+}
+
+.confirm_card:active {
+  transform: scale(0.98);
 }
 
 .game_left_side {
@@ -493,6 +510,20 @@ span.debug, span.admin {
   z-index: 500;
   border-radius: 18px;
   padding: 15px;
+  border: 1px solid var(--circle-border);
+}
+
+/* FIX: Dropdown text visibility in game options */
+.game_options select,
+.game_options select option {
+  background: #1a1f2a;
+  color: #ffffff;
+}
+
+.game_options input[type="text"],
+.game_options input[type="password"] {
+  background: var(--circle-panel);
+  color: var(--circle-text);
   border: 1px solid var(--circle-border);
 }
 
@@ -554,10 +585,30 @@ span.debug, span.admin {
   border-bottom: 1px solid var(--circle-border);
   font-size: 11pt;
   color: var(--circle-text);
+  transition: all 0.2s ease;
 }
 
 .scorecard:nth-child(even) {
   background: var(--circle-panel2);
+}
+
+/* FIX: Scoreboard winner visibility - bright green background with dark text */
+.scorecard.selected {
+  background: var(--circle-accent) !important;
+  color: var(--circle-bg) !important;
+  box-shadow: 0 0 30px rgba(9,255,3,0.3);
+}
+
+.scorecard.selected .scorecard_player,
+.scorecard.selected .scorecard_score,
+.scorecard.selected .scorecard_point_title,
+.scorecard.selected .scorecard_s {
+  color: var(--circle-bg) !important;
+}
+
+.scorecard.selected .scorecard_status {
+  color: var(--circle-bg) !important;
+  font-weight: bold;
 }
 
 .scorecard_status {
@@ -570,9 +621,9 @@ span.debug, span.admin {
   clear: both;
 }
 
+/* Remove the old .selected since we're using .scorecard.selected now */
 .selected {
-  color: var(--circle-bg) !important;
-  background: var(--circle-accent) !important;
+  /* Kept for compatibility but overridden above */
 }
 
 .logo {
@@ -780,6 +831,23 @@ input, select, textarea {
   padding: 4px 8px;
 }
 
+/* FIX: All dropdown options visible */
+select option,
+input[type="text"] option,
+.game_options select option,
+.cardset_filter_list select option,
+#tab-preferences select option {
+  background: #1a1f2a;
+  color: #ffffff;
+}
+
+/* FIX: Selected dropdown option */
+select option:checked,
+select option:selected {
+  background: var(--circle-accent);
+  color: var(--circle-bg);
+}
+
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--circle-accent);
@@ -807,4 +875,143 @@ input[type="button"]:hover, input[type="submit"]:hover {
   background: var(--circle-panel2);
   color: var(--circle-accent);
   border: 1px solid var(--circle-border);
+}
+
+/* ============================================
+   RESPONSIVE FIXES - Cards clipping into chat
+   ============================================ */
+
+/* FIX: Game area responsive layout */
+@media (max-width: 1400px) {
+  .game_right_side, .game_options {
+    left: 246px;
+    width: 700px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .game_right_side, .game_options {
+    left: 246px;
+    width: 500px;
+  }
+  
+  .game_right_side_cards {
+    min-width: 300px;
+  }
+  
+  .game_hand_cards {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game_left_side {
+    width: 180px;
+  }
+  
+  .game_black_card_wrapper {
+    width: 180px;
+  }
+  
+  .game_black_card {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .game_right_side, .game_options {
+    left: 195px;
+    width: 350px;
+  }
+  
+  .card {
+    width: 150px;
+    height: 150px;
+    font-size: 12pt;
+    padding: 10px;
+  }
+  
+  .game_right_side_cards {
+    min-width: 200px;
+  }
+  
+  .game_hand_cards {
+    min-width: 250px;
+  }
+  
+  #bottom {
+    height: 300px;
+    top: 580px;
+  }
+  
+  .scoreboard {
+    width: 180px;
+  }
+  
+  #info_area {
+    width: 180px;
+  }
+  
+  #tabs {
+    width: 60%;
+    right: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .game_left_side {
+    width: 140px;
+    padding-left: 5px;
+  }
+  
+  .game_black_card_wrapper {
+    width: 140px;
+  }
+  
+  .game_black_card {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .game_right_side, .game_options {
+    left: 155px;
+    width: 250px;
+  }
+  
+  .card {
+    width: 110px;
+    height: 110px;
+    font-size: 10pt;
+    padding: 8px;
+    margin: 2px;
+  }
+  
+  .game_hand_cards {
+    min-width: 150px;
+    padding-left: 0;
+  }
+  
+  .confirm_card {
+    font-size: 12px;
+    padding: 10px;
+  }
+  
+  .game_message {
+    font-size: 100%;
+  }
+  
+  #menubar {
+    height: auto;
+    min-height: 25px;
+    padding: 4px;
+  }
+  
+  #menubar_left, #menubar_right {
+    float: none;
+    text-align: center;
+  }
+  
+  .game_menu_bar {
+    float: none;
+    display: inline-block;
+  }
 }
