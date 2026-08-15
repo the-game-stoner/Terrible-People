@@ -1,7 +1,29 @@
 /**
  * Copyright (c) 2012-2018, Andy Janata
  * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the following conditions are met:
+ * 
+ * * Redistributions of source code must retain the above copyright notice, this list of conditions
+ *   and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice, this list of
+ *   conditions and the following disclaimer in the documentation and/or other materials provided
+ *   with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+ * WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+/* ============================================
+   The-Circle.xyz Theme - Dark + Neon Green #09ff03
+   ============================================ */
 
 :root {
   --circle-bg: #070a0f;
@@ -35,6 +57,11 @@ body {
   font-family: "helvetica neue", helvetica, Arial, sans-serif;
 }
 
+h2,h3,h4 {
+  margin: 0 0 .25em;
+  color: var(--circle-text);
+}
+
 #menubar {
   background: var(--circle-panel);
   backdrop-filter: blur(8px);
@@ -43,9 +70,18 @@ body {
   height: auto;
   min-height: 42px;
   padding: .5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
-#menubar_left { float: left; }
-#menubar_right { float: right; }
+
+#menubar_left, #menubar_right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
 
 #nickbox {
   border: 1px solid var(--circle-border);
@@ -90,21 +126,25 @@ body {
   margin: 4px;
   transition: all 0.2s ease;
 }
+
 .gamelist_lobby:hover {
   border-color: var(--circle-accent);
   box-shadow: 0 0 12px var(--circle-glow);
 }
+
 .gamelist_lobby_left {
   width: 77%;
   height: 100%;
   padding: .5em 1.5%;
   float: left;
 }
+
 .gamelist_lobby_right {
   width: 20%;
   height: 100%;
   float: right;
 }
+
 .gamelist_lobby_join {
   width: 100%;
   height: 75%;
@@ -117,11 +157,13 @@ body {
   white-space: normal;
   transition: all 0.2s ease;
 }
+
 .gamelist_lobby_join:hover {
   background: var(--circle-accent-soft);
   border-color: var(--circle-accent);
   color: var(--circle-accent);
 }
+
 .gamelist_lobby_spectate {
   width: 100%;
   height: 25%;
@@ -133,49 +175,55 @@ body {
   font-weight: 700;
   transition: all 0.2s ease;
 }
+
 .gamelist_lobby_spectate:hover {
   background: var(--circle-accent-soft);
   border-color: var(--circle-accent);
   color: var(--circle-accent);
 }
+
 .gamelist_lobby_status {
   float: right;
   font-weight: 700;
 }
-.gamelist_lobby_status_joinable { color: var(--circle-accent); }
-.gamelist_lobby_status_unjoinable { color: var(--circle-muted); }
+
+.gamelist_lobby_status_joinable {
+  color: var(--circle-accent);
+}
+
+.gamelist_lobby_status_unjoinable {
+  color: var(--circle-muted);
+}
 
 /* ============================================
-   MAIN LAYOUT
+   BOTTOM - Scoreboard + Chat
    ============================================ */
 
 #bottom {
   width: 100%;
-  position: absolute;
-  bottom: 0;
-  height: 215px;
-  min-height: 100px;
+  position: relative !important;
+  top: auto !important;
+  clear: both;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 #info_area {
-  width: 250px;
-  height: 100%;
-  position: absolute;
-  bottom: 0px;
-  min-height: 100px;
+  flex: 0 0 250px;
+  min-height: 200px;
   border: 1px solid var(--circle-border);
   background: var(--circle-panel2);
   border-radius: 12px;
+  padding: 5px;
 }
 
 #tabs {
-  min-height: 100px;
-  width: 50%;
-  height: 100%;
+  flex: 1;
+  min-height: 200px;
+  min-width: 300px;
   border: 0px;
-  position: absolute;
-  bottom: 0px;
-  right: 14px;
 }
 
 #tabs .ui-widget {
@@ -187,15 +235,43 @@ body {
   color: var(--circle-text) !important;
 }
 
+.cardset_filter_list {
+  display: inline-block;
+  width: 33%;
+}
+
+.cardset_filter_list select {
+  height: 150px;
+  width: 100%;
+  background: var(--circle-panel);
+  color: var(--circle-text);
+  border: 1px solid var(--circle-border);
+  border-radius: 8px;
+}
+
+/* FIX: Dropdown option text visibility */
+.cardset_filter_list select option,
+select option {
+  background: #1a1f2a;
+  color: #ffffff;
+}
+
+.cardset_filter_list span {
+  font-weight: bold;
+  color: var(--circle-text);
+}
+
+.cardset_filter_list .buttons {
+  text-align: center;
+}
+
 .log {
   width: 100%;
-  height: 200px !important;
+  height: 180px !important;
   border-style: none solid solid none;
   border-color: var(--circle-border);
   border-width: 1px;
-  position: absolute;
-  bottom: 40px !important;
-  right: -5px;
+  position: relative;
   overflow-y: auto !important;
   min-height: 43px;
   font-size: 14px;
@@ -204,13 +280,20 @@ body {
   color: var(--circle-text);
 }
 
+#tab-preferences input[type='button'] {
+  float: right;
+}
+
+#tab-preferences, #tab-gamelist-filters {
+  overflow-y: auto;
+}
+
 .chat {
   border: 1px solid var(--circle-border);
   background: var(--circle-panel);
   color: var(--circle-text);
   bottom: 0px;
   height: 25px;
-  position: absolute;
   padding: 0px;
   width: calc(100% - 80px) !important;
   font-family: serif;
@@ -221,9 +304,6 @@ body {
 .chat_submit {
   width: 50px;
   height: 30px;
-  position: absolute;
-  right: -1px;
-  bottom: -1px;
   margin: 0px;
   padding: 0px;
   font-size: 14px;
@@ -233,42 +313,20 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+
 .chat_submit:hover {
   background: var(--circle-accent-soft);
   border-color: var(--circle-accent);
   color: var(--circle-accent);
 }
 
-.cardset_filter_list {
-  display: inline-block;
-  width: 33%;
-}
-.cardset_filter_list select {
-  height: 150px;
-  width: 100%;
-  background: var(--circle-panel);
-  color: var(--circle-text);
-  border: 1px solid var(--circle-border);
-  border-radius: 8px;
-}
-.cardset_filter_list select option,
-select option {
-  background: #1a1f2a;
-  color: #ffffff;
-}
-.cardset_filter_list span {
-  font-weight: bold;
-  color: var(--circle-text);
-}
-.cardset_filter_list .buttons {
-  text-align: center;
+span.error {
+  color: #ff4444;
 }
 
-#tab-preferences input[type='button'] { float: right; }
-#tab-preferences, #tab-gamelist-filters { overflow-y: auto; }
-
-span.error { color: #ff4444; }
-span.debug, span.admin { color: var(--circle-accent); }
+span.debug, span.admin {
+  color: var(--circle-accent);
+}
 
 /* ============================================
    CARDS
@@ -276,13 +334,12 @@ span.debug, span.admin { color: var(--circle-accent); }
 
 .card {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border: 1px solid var(--circle-border);
-  padding: 12px;
-  font-size: 12pt;
-  float: left;
-  border-radius: 18px;
+  padding: 10px;
+  font-size: 11pt;
+  border-radius: 14px;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -290,8 +347,9 @@ span.debug, span.admin { color: var(--circle-accent); }
   -o-user-select: none;
   user-select: none;
   transition: all 0.2s ease;
-  margin: 4px;
   flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .blackcard {
@@ -305,11 +363,14 @@ span.debug, span.admin { color: var(--circle-accent); }
   background: var(--circle-panel);
   color: var(--circle-text);
   backdrop-filter: blur(8px);
+  cursor: pointer;
 }
+
 .whitecard:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
   border-color: var(--circle-accent);
   box-shadow: 0 0 18px rgba(9,255,3,0.2);
+  z-index: 10;
 }
 
 .whitecard, .gamelist_lobby {
@@ -323,123 +384,78 @@ span.debug, span.admin { color: var(--circle-accent); }
   margin: 15px;
 }
 
-.hide { display: none; }
+.hide {
+  display: none;
+}
 
 /* ============================================
-   GAME LAYOUT
+   GAME LAYOUT - FLEXBOX
    ============================================ */
 
 .game {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-.your_hand {
-  position: absolute;
-  bottom: 10px;
-  right: 5px;
-  color: var(--circle-accent);
-  font-weight: bold;
-}
-
-.game_hand {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  height: 30%;
-  min-height: 150px;
-}
-
-.game_hand_filter {
-  height: 100%;
-  position: relative;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 100;
-  text-align: center;
-}
-.game_hand_filter_text {
-  position: absolute;
-  top: 50%;
-  font-size: 300%;
-  margin-top: -30px;
-  background: var(--circle-panel);
-  color: var(--circle-text);
-  padding: .25em;
-  border-radius: 12px;
-}
-
-.game_hand_cards {
-  position: absolute;
-  bottom: 0px;
-  height: 100%;
-  width: 99%;
-  padding-left: 2px;
-  min-width: 750px;
   display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  justify-content: center !important;
-  padding: 6px !important;
-  overflow-y: auto !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  min-height: 500px !important;
+  padding: 5px !important;
+  box-sizing: border-box !important;
 }
-.game_hand_cards .card { cursor: pointer; }
 
-.game_top { padding: 5px; }
-.game_menu_bar { float: right; }
+.game_top {
+  flex: 0 0 auto !important;
+  padding: 5px !important;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.game_menu_bar {
+  float: none !important;
+}
+
 .game_message {
   font-size: 150%;
   font-weight: bold;
   color: var(--circle-accent);
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Main game area - flex row */
+.game_main_row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 15px !important;
+  flex: 1 1 auto !important;
+  min-height: 200px !important;
+  padding: 5px 0 !important;
+}
+
+.game_left_side {
+  flex: 0 0 200px !important;
+  padding-left: 10px !important;
+  padding-top: 10px !important;
+  float: none !important;
+  width: auto !important;
 }
 
 .game_black_card_wrapper {
-  width: 232px;
-  float: left;
+  width: 200px !important;
 }
+
 .game_black_card {
-  width: 232px;
-  height: 232px;
-  margin-top: 15px;
-}
-
-.confirm_card {
-  float: left;
-  margin-top: 10px;
-  width: 100%;
-  z-index: 500;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid var(--circle-border);
-  color: var(--circle-text);
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.confirm_card:hover {
-  background: var(--circle-accent-soft);
-  border-color: var(--circle-accent);
-  color: var(--circle-accent);
-}
-.confirm_card:active { transform: scale(0.98); }
-
-.game_left_side {
-  float: left;
-  width: 232px;
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
-.game_right_side, .game_options {
-  position: absolute;
-  left: 246px;
-  width: 1000px;
+  width: 200px !important;
+  height: 200px !important;
+  margin-top: 10px !important;
 }
 
 .game_options {
+  flex: 1 1 300px !important;
+  min-width: 250px !important;
+  position: relative !important;
+  left: auto !important;
+  width: auto !important;
   background: var(--circle-panel);
   backdrop-filter: blur(8px);
   z-index: 500;
@@ -448,30 +464,25 @@ span.debug, span.admin { color: var(--circle-accent); }
   border: 1px solid var(--circle-border);
 }
 
-.game_options select,
-.game_options select option {
-  background: #1a1f2a;
-  color: #ffffff;
-}
-.game_options input[type="text"],
-.game_options input[type="password"] {
-  background: var(--circle-panel);
-  color: var(--circle-text);
-  border: 1px solid var(--circle-border);
+.game_right_side {
+  flex: 1 1 300px !important;
+  min-width: 250px !important;
+  position: relative !important;
+  left: auto !important;
+  width: auto !important;
 }
 
 .game_right_side_box {
-  height: 60%;
-  margin: 10px;
+  height: auto !important;
+  margin: 5px !important;
 }
+
 .game_right_side_cards {
-  margin-top: 15px;
-  min-width: 600px;
-  cursor: pointer;
-  z-index: 200;
-}
-.game_right_side_cards .card_holder, .game_white_cards_binder {
-  z-index: 200;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
+  min-width: auto !important;
 }
 
 .game_white_cards_binder {
@@ -482,6 +493,7 @@ span.debug, span.admin { color: var(--circle-accent); }
   border-radius: 18px;
   transition: all 0.2s ease;
 }
+
 .game_white_cards_binder:hover {
   border-color: var(--circle-accent);
 }
@@ -494,8 +506,109 @@ span.debug, span.admin { color: var(--circle-accent); }
   margin-right: 2px;
   z-index: 1;
 }
+
 .game_white_cards_binder .card_holder {
   margin-right: 0px;
+}
+
+/* Player Hand */
+.game_hand {
+  flex: 0 0 auto !important;
+  min-height: 160px !important;
+  width: 100% !important;
+  padding: 5px 0 !important;
+  position: relative !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clear: both !important;
+}
+
+.game_hand_filter {
+  height: 100%;
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  text-align: center;
+}
+
+.game_hand_filter_text {
+  position: absolute;
+  top: 50%;
+  font-size: 300%;
+  margin-top: -30px;
+  background: var(--circle-panel);
+  color: var(--circle-text);
+  padding: .25em;
+  border-radius: 12px;
+}
+
+.game_hand_cards {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  justify-content: center !important;
+  padding: 8px !important;
+  min-height: 120px !important;
+  position: relative !important;
+  bottom: auto !important;
+  height: auto !important;
+  width: 100% !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+.game_hand_cards .card {
+  cursor: pointer;
+}
+
+.your_hand {
+  color: var(--circle-accent);
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  padding: 4px;
+}
+
+.confirm_card {
+  width: 100%;
+  z-index: 500;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--circle-border);
+  color: var(--circle-text);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.confirm_card:hover {
+  background: var(--circle-accent-soft);
+  border-color: var(--circle-accent);
+  color: var(--circle-accent);
+}
+
+.confirm_card:active {
+  transform: scale(0.98);
+}
+
+/* FIX: Dropdown text visibility in game options */
+.game_options select,
+.game_options select option {
+  background: #1a1f2a;
+  color: #ffffff;
+}
+
+.game_options input[type="text"],
+.game_options input[type="password"] {
+  background: var(--circle-panel);
+  color: var(--circle-text);
+  border: 1px solid var(--circle-border);
 }
 
 /* ============================================
@@ -505,7 +618,6 @@ span.debug, span.admin { color: var(--circle-accent); }
 .scoreboard {
   width: 250px;
   height: 100%;
-  position: absolute;
   overflow-y: scroll;
   background: var(--circle-panel2);
   border-radius: 12px;
@@ -520,21 +632,25 @@ span.debug, span.admin { color: var(--circle-accent); }
   color: var(--circle-text);
   transition: all 0.2s ease;
 }
+
 .scorecard:nth-child(even) {
   background: var(--circle-panel2);
 }
 
+/* FIX: Scoreboard winner visibility */
 .scorecard.selected {
   background: var(--circle-accent) !important;
   color: var(--circle-bg) !important;
   box-shadow: 0 0 30px rgba(9,255,3,0.3);
 }
+
 .scorecard.selected .scorecard_player,
 .scorecard.selected .scorecard_score,
 .scorecard.selected .scorecard_point_title,
 .scorecard.selected .scorecard_s {
   color: var(--circle-bg) !important;
 }
+
 .scorecard.selected .scorecard_status {
   color: var(--circle-bg) !important;
   font-weight: bold;
@@ -546,7 +662,9 @@ span.debug, span.admin { color: var(--circle-accent); }
   color: var(--circle-accent);
 }
 
-.clear { clear: both; }
+.clear {
+  clear: both;
+}
 
 /* ============================================
    LOGOS & METADATA
@@ -559,38 +677,33 @@ span.debug, span.admin { color: var(--circle-accent); }
   bottom: 15px;
   left: 15px;
 }
+
 .logo_element {
   top: 2px;
   position: absolute;
   width: 22px;
   height: 22px;
 }
+
 .blackcard .logo_element {
   border: 1px solid var(--circle-border);
 }
+
 .logo_1 { left: 2px; }
 .blackcard .logo_1 { background: var(--circle-accent); }
 .whitecard .logo_1 { background: var(--circle-accent); }
 .logo_2 { left: 10px; }
 .blackcard .logo_2 { background: var(--circle-muted); }
 .whitecard .logo_2 { background: var(--circle-muted); }
-.logo_3 {
-  left: 16px;
-  top: 5px;
-}
-.blackcard .logo_3 {
-  background: var(--circle-accent);
-  color: var(--circle-bg);
-}
-.whitecard .logo_3 {
-  background: var(--circle-accent);
-  color: var(--circle-bg);
-}
+.logo_3 { left: 16px; top: 5px; }
+.blackcard .logo_3 { background: var(--circle-accent); color: var(--circle-bg); }
+.whitecard .logo_3 { background: var(--circle-accent); color: var(--circle-bg); }
 
 .watermark_container {
   font-size: 5pt;
   text-align: center;
 }
+
 .logo_text {
   position: absolute;
   font-size: 8pt;
@@ -605,6 +718,7 @@ span.debug, span.admin { color: var(--circle-accent); }
   right: 15px;
   bottom: 15px;
 }
+
 .draw, .pick {
   float: right;
   clear: both;
@@ -612,6 +726,7 @@ span.debug, span.admin { color: var(--circle-accent); }
   font-size: 12pt;
   color: var(--circle-accent);
 }
+
 .card_number {
   width: 20px;
   height: 20px;
@@ -620,6 +735,7 @@ span.debug, span.admin { color: var(--circle-accent); }
   -o-border-radius: 10px;
   border-radius: 10px;
 }
+
 .blackcard .card_number {
   background: var(--circle-accent);
   display: inline-block;
@@ -644,6 +760,7 @@ span.debug, span.admin { color: var(--circle-accent); }
   backdrop-filter: blur(12px);
   border-radius: 24px;
 }
+
 .previous_round_close {
   position: absolute;
   right: 0px;
@@ -668,6 +785,7 @@ span.debug, span.admin { color: var(--circle-accent); }
   margin-right: 4px;
   white-space: nowrap;
 }
+
 .checkbox input { vertical-align: middle; }
 .checkbox span { vertical-align: middle; color: var(--circle-text); }
 
@@ -690,6 +808,7 @@ dfn {
   text-decoration: underline;
   color: var(--circle-accent);
 }
+
 .gamelink:hover {
   text-shadow: 0 0 4px var(--circle-glow);
 }
@@ -709,6 +828,7 @@ a {
   text-decoration: none;
   transition: color 0.2s ease;
 }
+
 a:hover {
   color: var(--circle-text);
   text-shadow: 0 0 4px var(--circle-glow);
@@ -730,6 +850,7 @@ input[type="text"] option,
   background: #1a1f2a;
   color: #ffffff;
 }
+
 select option:checked,
 select option:selected {
   background: var(--circle-accent);
@@ -746,6 +867,7 @@ input[type="button"], input[type="submit"] {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 input[type="button"]:hover, input[type="submit"]:hover {
   background: var(--circle-accent-soft);
   border-color: var(--circle-accent);
@@ -757,6 +879,7 @@ input[type="button"]:hover, input[type="submit"]:hover {
   color: var(--circle-text);
   border: 1px solid var(--circle-border);
 }
+
 .ui-widget-header {
   background: var(--circle-panel2);
   color: var(--circle-accent);
@@ -767,81 +890,56 @@ input[type="button"]:hover, input[type="submit"]:hover {
    RESPONSIVE
    ============================================ */
 
-@media (max-width: 1400px) {
-  .game_right_side, .game_options {
-    left: 246px;
-    width: 700px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .game_right_side, .game_options {
-    left: 246px;
-    width: 500px;
-  }
-  .game_right_side_cards { min-width: 300px; }
-  .game_hand_cards { min-width: 400px; }
-}
-
 @media (max-width: 768px) {
-  .game_left_side { width: 180px; }
-  .game_black_card_wrapper { width: 180px; }
-  .game_black_card { width: 180px; height: 180px; }
-  .game_right_side, .game_options {
-    left: 195px;
-    width: 350px;
+  .game_left_side {
+    flex: 0 0 160px !important;
+  }
+  .game_black_card_wrapper { width: 160px !important; }
+  .game_black_card { width: 160px !important; height: 160px !important; }
+  .game_options, .game_right_side {
+    flex: 1 1 200px !important;
+    min-width: 150px !important;
   }
   .card {
-    width: 120px;
-    height: 120px;
-    font-size: 10pt;
-    padding: 8px;
+    width: 100px !important;
+    height: 100px !important;
+    font-size: 9pt !important;
+    padding: 6px !important;
   }
-  .game_right_side_cards { min-width: 200px; }
-  .game_hand_cards { min-width: 250px; }
-  .scoreboard { width: 180px; }
-  #info_area { width: 180px; }
-  #tabs { width: 60%; right: 5px; }
+  .game_hand_cards { gap: 4px !important; padding: 4px !important; }
+  .game_hand { min-height: 120px !important; }
+  #info_area { flex: 0 0 180px !important; }
+  #tabs { min-width: 200px !important; }
+  .scoreboard { width: 180px !important; }
 }
 
 @media (max-width: 600px) {
   .game_left_side {
-    width: 140px;
-    padding-left: 5px;
+    flex: 0 0 120px !important;
+    padding-left: 5px !important;
   }
-  .game_black_card_wrapper { width: 140px; }
-  .game_black_card { width: 140px; height: 140px; }
-  .game_right_side, .game_options {
-    left: 155px;
-    width: 250px;
+  .game_black_card_wrapper { width: 120px !important; }
+  .game_black_card { width: 120px !important; height: 120px !important; }
+  .game_options, .game_right_side {
+    flex: 1 1 150px !important;
+    min-width: 120px !important;
   }
   .card {
-    width: 100px;
-    height: 100px;
-    font-size: 9pt;
-    padding: 6px;
-    margin: 2px;
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 8pt !important;
+    padding: 4px !important;
   }
-  .game_hand_cards {
-    min-width: 150px;
-    padding-left: 0;
-  }
-  .confirm_card {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-  .game_message { font-size: 100%; }
+  .game_hand_cards { gap: 4px !important; padding: 4px !important; }
+  .game_hand { min-height: 100px !important; }
   #menubar {
-    height: auto;
-    min-height: 25px;
-    padding: 4px;
+    flex-direction: column;
+    align-items: stretch;
   }
   #menubar_left, #menubar_right {
-    float: none;
-    text-align: center;
+    justify-content: center;
   }
-  .game_menu_bar {
-    float: none;
-    display: inline-block;
-  }
+  #info_area { flex: 0 0 100% !important; }
+  #tabs { min-width: 100% !important; }
+  .scoreboard { width: 100% !important; }
 }
