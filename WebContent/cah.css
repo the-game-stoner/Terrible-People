@@ -199,9 +199,11 @@ h2,h3,h4 {
   width: 100%;
   position: relative !important;
   top: auto !important;
-  min-height: 215px;
+  min-height: 150px !important;
+  max-height: 200px !important;
   clear: both;
-  margin-top: 10px;
+  margin-top: 5px;
+  overflow: hidden !important;
 }
 
 #info_area {
@@ -209,7 +211,7 @@ h2,h3,h4 {
   height: 100%;
   position: relative;
   float: left;
-  min-height: 200px;
+  min-height: 130px !important;
   border: 1px solid var(--circle-border);
   background: var(--circle-panel2);
   border-radius: 12px;
@@ -217,7 +219,7 @@ h2,h3,h4 {
 }
 
 #tabs {
-  min-height: 200px;
+  min-height: 130px !important;
   width: calc(100% - 270px);
   height: 100%;
   border: 0px;
@@ -266,14 +268,15 @@ select option {
 
 .log {
   width: 100%;
-  height: 200px !important;
+  height: 100px !important;
+  max-height: 100px !important;
   border-style: none solid solid none;
   border-color: var(--circle-border);
   border-width: 1px;
   position: relative;
   overflow-y: auto !important;
   min-height: 43px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: serif;
   background: var(--circle-panel2);
   color: var(--circle-text);
@@ -329,13 +332,13 @@ span.debug, span.admin {
 
 .card {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   border: 1px solid var(--circle-border);
-  padding: 12px;
-  font-size: 13pt;
+  padding: 8px;
+  font-size: 10pt;
   float: left;
-  border-radius: 18px;
+  border-radius: 12px;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -343,7 +346,7 @@ span.debug, span.admin {
   -o-user-select: none;
   user-select: none;
   transition: all 0.2s ease;
-  margin: 4px;
+  margin: 3px;
   flex-shrink: 0;
 }
 
@@ -361,7 +364,7 @@ span.debug, span.admin {
 }
 
 .whitecard:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px) scale(1.02);
   border-color: var(--circle-accent);
   box-shadow: 0 0 18px rgba(9,255,3,0.2);
 }
@@ -400,8 +403,8 @@ span.debug, span.admin {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 30%;
-  min-height: 150px;
+  height: 45% !important;
+  min-height: 250px !important;
   overflow: visible !important;
   clear: both !important;
 }
@@ -434,9 +437,10 @@ span.debug, span.admin {
   min-width: 750px;
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 8px !important;
+  gap: 6px !important;
   justify-content: center !important;
-  padding: 8px !important;
+  padding: 6px !important;
+  overflow-y: auto !important;
 }
 
 .game_hand_cards .card {
@@ -458,14 +462,14 @@ span.debug, span.admin {
 }
 
 .game_black_card_wrapper {
-  width: 232px;
+  width: 200px;
   float: left;
 }
 
 .game_black_card {
-  width: 232px;
-  height: 232px;
-  margin-top: 15px;
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
 }
 
 .confirm_card {
@@ -477,9 +481,9 @@ span.debug, span.admin {
   border: 1px solid var(--circle-border);
   color: var(--circle-text);
   border-radius: 8px;
-  padding: 10px 16px;
+  padding: 8px 12px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: none;
@@ -499,15 +503,15 @@ span.debug, span.admin {
 
 .game_left_side {
   float: left;
-  width: 232px;
+  width: 200px;
   padding-left: 10px;
   padding-top: 10px;
 }
 
 .game_right_side, .game_options {
   position: absolute;
-  left: 246px;
-  width: 1000px;
+  left: 220px;
+  width: 800px;
 }
 
 .game_options {
@@ -586,10 +590,10 @@ span.debug, span.admin {
 
 .scorecard {
   background: var(--circle-panel);
-  height: 36px;
+  height: 32px;
   padding: .25em .5em;
   border-bottom: 1px solid var(--circle-border);
-  font-size: 11pt;
+  font-size: 10pt;
   color: var(--circle-text);
   transition: all 0.2s ease;
 }
@@ -884,15 +888,15 @@ input[type="button"]:hover, input[type="submit"]:hover {
 
 @media (max-width: 1400px) {
   .game_right_side, .game_options {
-    left: 246px;
-    width: 700px;
+    left: 220px;
+    width: 600px;
   }
 }
 
 @media (max-width: 1100px) {
   .game_right_side, .game_options {
-    left: 246px;
-    width: 500px;
+    left: 220px;
+    width: 450px;
   }
   
   .game_right_side_cards {
@@ -906,28 +910,29 @@ input[type="button"]:hover, input[type="submit"]:hover {
 
 @media (max-width: 768px) {
   .game_left_side {
-    width: 180px;
+    width: 160px;
   }
   
   .game_black_card_wrapper {
-    width: 180px;
+    width: 160px;
   }
   
   .game_black_card {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
   }
   
   .game_right_side, .game_options {
-    left: 195px;
-    width: 350px;
+    left: 175px;
+    width: 320px;
   }
   
   .card {
-    width: 120px;
-    height: 120px;
-    font-size: 10pt;
-    padding: 8px;
+    width: 100px;
+    height: 100px;
+    font-size: 9pt;
+    padding: 6px;
+    margin: 2px;
   }
   
   .game_right_side_cards {
@@ -939,59 +944,70 @@ input[type="button"]:hover, input[type="submit"]:hover {
   }
   
   .scoreboard {
-    width: 180px;
+    width: 160px;
   }
   
   #info_area {
-    width: 180px;
+    width: 160px;
   }
   
   #tabs {
-    width: 60%;
-    right: 5px;
+    width: 55%;
   }
   
   #bottom {
-    min-height: 300px;
+    min-height: 120px !important;
+    max-height: 160px !important;
+  }
+  
+  .game_hand {
+    min-height: 180px !important;
+  }
+  
+  .log {
+    height: 70px !important;
+    max-height: 70px !important;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 600px) {
   .game_left_side {
-    width: 140px;
+    width: 120px;
     padding-left: 5px;
   }
   
   .game_black_card_wrapper {
-    width: 140px;
+    width: 120px;
   }
   
   .game_black_card {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
   }
   
   .game_right_side, .game_options {
-    left: 155px;
-    width: 250px;
+    left: 130px;
+    width: 220px;
   }
   
   .card {
-    width: 100px;
-    height: 100px;
-    font-size: 9pt;
-    padding: 6px;
+    width: 85px;
+    height: 85px;
+    font-size: 8pt;
+    padding: 5px;
     margin: 2px;
   }
   
   .game_hand_cards {
-    min-width: 150px;
+    min-width: 120px;
     padding-left: 0;
+    gap: 4px !important;
   }
   
   .confirm_card {
-    font-size: 12px;
-    padding: 8px 12px;
+    font-size: 11px;
+    padding: 6px 10px;
   }
   
   .game_message {
@@ -1012,5 +1028,30 @@ input[type="button"]:hover, input[type="submit"]:hover {
   .game_menu_bar {
     float: none;
     display: inline-block;
+  }
+  
+  #bottom {
+    min-height: 100px !important;
+    max-height: 140px !important;
+  }
+  
+  .game_hand {
+    min-height: 140px !important;
+  }
+  
+  .log {
+    height: 50px !important;
+    max-height: 50px !important;
+    font-size: 10px;
+  }
+  
+  #info_area {
+    width: 120px;
+    min-height: 100px !important;
+  }
+  
+  #tabs {
+    width: calc(100% - 130px);
+    min-height: 100px !important;
   }
 }
