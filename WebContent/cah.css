@@ -385,7 +385,7 @@ span.debug, span.admin {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 /* ============================================
