@@ -266,7 +266,6 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
           data-lpignore="true" />
 
       <input type="button" id="leave_game" class="hide" value="✕ Leave Game" />
-      <!-- START GAME button is now hidden - use "Confirm Selection" below instead -->
       <input type="button" id="start_game" class="hide" value="Start Game" style="display:none !important;" />
       <input type="button" id="stop_game" class="hide" value="■ Stop Game" />
     </div>
@@ -488,8 +487,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
             <div class="game_black_card" tabindex="0">
             </div>
           </div>
-          <!-- START GAME BUTTON - Now big, green, and obvious! -->
-          <input type="button" class="confirm_card" value="▶ START GAME" title="Start the game with current settings" />
+          <input type="button" class="confirm_card" value="Play Card" title="Confirm Selection" />
         </div>
         
         <!-- Game Options Overlay -->
