@@ -290,7 +290,7 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
 <!-- ========================================
      BOTTOM - Scoreboard + Tabs
      ======================================== -->
-<div id="bottom" class="hide">
+<div id="bottom" class="">
   <div id="info_area">
   </div>
   <div id="tabs">
@@ -475,8 +475,8 @@ boolean allowBlankCards = injector.getInstance(Key.get(new TypeLiteral<Boolean>(
       </div>
     </div>
     
-    <div style="width:100%; height:472px;">
-      <div style="width:100%; height:100%;">
+    <div style="width:100%; height:auto; min-height:472px;">
+      <div style="width:100%; height:auto; min-height:100%;">
         
         <!-- LEFT SIDE - Black Card + START Button -->
         <div class="game_left_side">
